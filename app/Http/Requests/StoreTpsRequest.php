@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCandidateRequest extends FormRequest
+class StoreTpsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,8 @@ class StoreCandidateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:30',
-            'visi' => 'required|string',
-            'misi' => 'required|string',
-            'photo' => 'required|file|mimes:jpg,jpeg,png,gif|max:3072',
-            'order' => 'required|numeric|unique:candidates,order'
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
         ];
     }
 }

@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
-use App\Models\Classes;
+use App\Http\Requests\StoreTpsRequest;
+use App\Http\Requests\UpdateTpsRequest;
 use App\Models\User;
 
-class UserController extends Controller
+class TpsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = User::whereDoesntHave('roles', function ($query) {
-            $query->whereIn('name', ['Admin', 'TPS']);
-        })->get();
-        $class = Classes::all();
-        confirmDelete("Remove User!", "Are you sure you want to delete user?");
-        return view('participant.user.index', compact('user', 'class'));
+        $user = User::role('tps')->get();
+        confirmDelete("Remove TPS!", "Are you sure you want to delete tps?");
+        return view('tps.index', compact('user'));
     }
 
     /**
@@ -33,18 +29,17 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreTpsRequest $request)
     {
         $validated = $request->validated();
-        $user =  User::create([
+        $user = User::create([
             'name' => $validated['name'],
-            'class_id' => $validated['class'],
-            'status_id' => 2,
             'email' => $validated['email'],
             'password' => $validated['password'],
+            'status_id' => 2,
         ]);
-        $user->assignRole('Participant');
-        toast('Successfully created a user', 'success')->autoClose(5000);
+        $user->assignRole('Tps');
+        toast('Successfully created a tps', 'success')->autoClose(5000);
         return redirect()->back();
     }
 
@@ -61,22 +56,20 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $class = Classes::all();
-        return view('participant.user.edit', compact('user', 'class'));
+        return view('tps.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateTpsRequest $request, User $user)
     {
         $validated = $request->validated();
 
         $dataToUpdate = [
             'name' => $validated['name'],
-            'class_id' => $validated['class'],
-            'status_id' => 2,
             'email' => $validated['email'],
+            'status_id' => 2,
         ];
 
         if (!empty($validated['password'])) {
@@ -85,8 +78,8 @@ class UserController extends Controller
 
         $user->update($dataToUpdate);
 
-        toast('Successfully edited a user', 'success')->autoClose(5000);
-        return redirect()->route('participant.user');
+        toast('Successfully edited a tps', 'success')->autoClose(5000);
+        return redirect()->route('tps');
     }
 
     /**
@@ -95,7 +88,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        toast('Successfully deleted a user', 'success')->autoClose(5000);
+        toast('Successfully deleted a tps', 'success')->autoClose(5000);
         return redirect()->back();
     }
 }

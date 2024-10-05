@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->string('name');
-            $table->uuid('clsas');
-            $table->string('visi');
-            $table->string('misi');
+            $table->text('visi');
+            $table->text('misi');
             $table->string('photo');
             $table->integer('order');
             $table->timestamps();

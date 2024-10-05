@@ -11,7 +11,7 @@ class UpdateCandidateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateCandidateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:30',
+            'visi' => 'required|string',
+            'misi' => 'required|string',
+            'photo' => 'nullable|file|mimes:jpg,jpeg,png,gif|max:3072',
+            'order' => 'required|numeric|unique:candidates,order,' . $this->candidate->uuid . ',uuid'
         ];
     }
 }

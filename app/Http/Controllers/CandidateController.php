@@ -13,7 +13,9 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        //
+        $candidate = Candidate::all();
+        confirmDelete("Remove Candidate!", "Are you sure you want to delete candidate?");
+        return view('candidate.index', compact('candidate'));
     }
 
     /**
@@ -29,7 +31,23 @@ class CandidateController extends Controller
      */
     public function store(StoreCandidateRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        if ($request->hasFile('photo')) {
+            $fotoPath = $request->file('photo')->store('kandidat', 'public');
+            $validated['photo'] = 'storage/' . $fotoPath;
+        }
+
+        Candidate::create([
+            'name' => $validated['name'],
+            'visi' => $validated['visi'],
+            'misi' => $validated['misi'],
+            'photo' => $validated['photo'],
+            'order' => $validated['order'],
+        ]);
+
+        toast('Successfully created a candidate', 'success')->autoClose(5000);
+        return redirect()->route('candidate');
     }
 
     /**
@@ -45,7 +63,7 @@ class CandidateController extends Controller
      */
     public function edit(Candidate $candidate)
     {
-        //
+        return view('candidate.edit', compact('candidate'));
     }
 
     /**
@@ -53,7 +71,27 @@ class CandidateController extends Controller
      */
     public function update(UpdateCandidateRequest $request, Candidate $candidate)
     {
-        //
+        $validated = $request->validated();
+
+        if ($request->hasFile('photo')) {
+            if ($candidate->photo && file_exists(public_path($candidate->photo))) {
+                unlink(public_path($candidate->photo));
+            }
+
+            $photoPath = $request->file('photo')->store('kandidat', 'public');
+            $validated['photo'] = 'storage/' . $photoPath;
+        }
+
+        $candidate->update([
+            'name' => $validated['name'],
+            'visi' => $validated['visi'],
+            'misi' => $validated['misi'],
+            'photo' => $validated['photo'] ?? $candidate->photo,
+            'order' => $validated['order'],
+        ]);
+
+        toast('Successfully edited candidate', 'success')->autoClose(5000);
+        return redirect()->route('candidate');
     }
 
     /**
@@ -61,6 +99,13 @@ class CandidateController extends Controller
      */
     public function destroy(Candidate $candidate)
     {
-        //
+
+        if ($candidate->photo && file_exists(public_path($candidate->photo))) {
+            unlink(public_path($candidate->photo));
+        }
+
+        $candidate->delete();
+        toast('Successfully deleted a candidate', 'success')->autoClose(5000);
+        return redirect()->back();
     }
 }

@@ -19,7 +19,6 @@ class Candidate extends Model
     protected $fillable = [
         'uuid',
         'name',
-        'clsas',
         'visi',
         'misi',
         'photo',
