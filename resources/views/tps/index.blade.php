@@ -5,7 +5,7 @@
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-end">
-                <li class="breadcrumb-item"><a href="#">Participant</a></li>
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
                     Tps
                 </li>
@@ -22,12 +22,14 @@
         <script src="https://cdn.datatables.net/2.1.7/js/dataTables.bootstrap5.js"></script>
 
         <script>
-            $('#table').DataTable({
-                columnDefs: [{
-                    targets: '_all',
-                    className: 'dt-head-left dt-body-left'
-                }]
-            });
+            $(document).ready(function() {
+                $('#table').DataTable({
+                    columnDefs: [{
+                        targets: '_all',
+                        className: 'dt-head-left dt-body-left'
+                    }]
+                });
+            })
         </script>
     </x-slot>
 

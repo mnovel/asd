@@ -22,12 +22,14 @@
         <script src="https://cdn.datatables.net/2.1.7/js/dataTables.bootstrap5.js"></script>
 
         <script>
-            $('#table').DataTable({
-                columnDefs: [{
-                    targets: '_all',
-                    className: 'dt-head-left dt-body-left'
-                }]
-            });
+            $(document).ready(function() {
+                $('#table').DataTable({
+                    columnDefs: [{
+                        targets: '_all',
+                        className: 'dt-head-left dt-body-left'
+                    }]
+                });
+            })
         </script>
     </x-slot>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\TpsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VotingSessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,7 @@ Route::prefix('create')->name('create')->group(function () {
 
     Route::post('tps', [TpsController::class, 'store'])->name('.tps');
     Route::post('candidate', [CandidateController::class, 'store'])->name('.candidate');
+    Route::post('voting-session', [VotingSessionController::class, 'store'])->name('.votingSession');
 });
 
 Route::prefix('edit')->name('edit')->group(function () {
@@ -43,6 +45,7 @@ Route::prefix('edit')->name('edit')->group(function () {
 
     Route::put('tps/{user}', [TpsController::class, 'update'])->name('.tps');
     Route::put('candidate/{candidate}', [CandidateController::class, 'update'])->name('.candidate');
+    Route::put('voting-session/{votingSession}', [VotingSessionController::class, 'update'])->name('.votingSession');
 });
 
 Route::prefix('delete')->name('delete')->group(function () {
@@ -51,6 +54,7 @@ Route::prefix('delete')->name('delete')->group(function () {
 
     Route::delete('tps/{user}', [TpsController::class, 'destroy'])->name('.tps');
     Route::delete('candidate/{candidate}', [CandidateController::class, 'destroy'])->name('.candidate');
+    Route::delete('voting-session/{votingSession}', [VotingSessionController::class, 'destroy'])->name('.votingSession');
 });
 
 
@@ -73,4 +77,7 @@ Route::middleware(['auth:web'])->group(function () {
 
     Route::get('candidate', [CandidateController::class, 'index'])->name('candidate');
     Route::get('candidate/edit/{candidate}', [CandidateController::class, 'edit'])->name('candidate.edit');
+
+    Route::get('voting-session', [VotingSessionController::class, 'index'])->name('votingSession');
+    Route::get('voting-session/edit/{votingSession}', [VotingSessionController::class, 'edit'])->name('votingSession.edit');
 });

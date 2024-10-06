@@ -11,7 +11,7 @@
 
     <x-sidebar-item name="Candidate" alias="candidate" :link="route('candidate')" icon="fa-solid fa-user-tie"></x-sidebar-item>
 
-    <x-sidebar-item name="Voting Sessions" alias="session" :link="url('session')" icon="fa-solid fa-calendar-week"></x-sidebar-item>
+    <x-sidebar-item name="Voting Sessions" alias="votingSession" :link="route('votingSession')" icon="fa-solid fa-calendar-week"></x-sidebar-item>
 
     <x-sidebar-item name="Precence" alias="precence" :link="url('precence')" icon="fa-solid fa-clipboard-list"></x-sidebar-item>
 </x-sidebar>
