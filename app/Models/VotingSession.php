@@ -12,40 +12,12 @@ class VotingSession extends Model
 
     protected $fillable = [
         'name',
-        'class',
         'open',
         'close'
     ];
 
-    /**
-     * Get the classes related to the voting session.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function classes()
+    public function class()
     {
-        $classIds = is_array($this->class) ? $this->class : json_decode($this->class, true);
-        return Classes::whereIn('id', $classIds)->get();
-    }
-
-    /**
-     * Set the class attribute to store as JSON.
-     *
-     * @param array $value
-     * @return void
-     */
-    public function setClassAttribute($value)
-    {
-        $this->attributes['class'] = json_encode($value);
-    }
-
-    /**
-     * Get the class attribute as an array.
-     *
-     * @return array
-     */
-    public function getClassAttribute($value)
-    {
-        return json_decode($value, true);
+        return $this->hasMany(Classes::class, 'session_id');
     }
 }

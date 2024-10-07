@@ -23,12 +23,31 @@
 
         <script>
             $(document).ready(function() {
-                $('#table').DataTable({
+                var table = $('#table').DataTable({
                     columnDefs: [{
                         targets: '_all',
                         className: 'dt-head-left dt-body-left'
-                    }]
+                    }],
+                    order: [
+                        [3, 'asc'],
+                        [1, 'asc']
+                    ]
                 });
+
+                table
+                    .on('order.dt search.dt', function() {
+                        let i = 1;
+
+                        table
+                            .cells(null, 0, {
+                                search: 'applied',
+                                order: 'applied'
+                            })
+                            .every(function(cell) {
+                                this.data(i++);
+                            });
+                    })
+                    .draw();
             })
         </script>
     </x-slot>
@@ -87,9 +106,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($user as $index => $userItem)
+                            @foreach ($user as $userItem)
                                 <tr class="align-middle">
-                                    <td>{{ $index + 1 }}</td>
+                                    <td></td>
                                     <td>{{ ucwords($userItem->name) }}</td>
                                     <td>{{ $userItem->email }}</td>
                                     <td>{{ $userItem->class->name }}</td>

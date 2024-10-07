@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\PrecenceController;
 use App\Http\Controllers\TpsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VotingSessionController;
@@ -80,4 +81,7 @@ Route::middleware(['auth:web'])->group(function () {
 
     Route::get('voting-session', [VotingSessionController::class, 'index'])->name('votingSession');
     Route::get('voting-session/edit/{votingSession}', [VotingSessionController::class, 'edit'])->name('votingSession.edit');
+
+    Route::get('precence', [PrecenceController::class, 'index'])->name('precence');
+    Route::get('voting-session/scan/{votingSession}', [PrecenceController::class, 'create'])->name('precence.scan');
 });

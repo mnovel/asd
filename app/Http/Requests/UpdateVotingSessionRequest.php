@@ -11,7 +11,7 @@ class UpdateVotingSessionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateVotingSessionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:15|unique:voting_sessions,name,' . $this->votingSession->id,
+            'time' => 'required|regex:/^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2} [APM]{2} - \d{2}\/\d{2}\/\d{4} \d{2}:\d{2} [APM]{2}$/',
         ];
     }
 }

@@ -17,10 +17,16 @@ class Precence extends Model
 
     protected $fillable = [
         'user_id',
+        'session_id'
     ];
 
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function votingSession()
+    {
+        return $this->belongsTo(VotingSession::class, 'session_id');
     }
 }

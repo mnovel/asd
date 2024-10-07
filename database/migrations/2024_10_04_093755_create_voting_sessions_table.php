@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('voting_sessions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->json('class');
             $table->timestamp('open');
             $table->timestamp('close');
             $table->timestamps();

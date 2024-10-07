@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('max_user');
+            $table->unsignedBigInteger('session_id');
             $table->timestamps();
+
+            $table->foreign('session_id')->references('id')->on('voting_sessions')->onDelete('restrict');
         });
     }
 

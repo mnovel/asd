@@ -13,7 +13,7 @@ class TpsController extends Controller
      */
     public function index()
     {
-        $user = User::role('tps')->get();
+        $user = User::role('tps')->orderBy('name')->get();
         confirmDelete("Remove TPS!", "Are you sure you want to delete tps?");
         return view('tps.index', compact('user'));
     }

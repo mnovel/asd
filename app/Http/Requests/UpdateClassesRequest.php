@@ -23,7 +23,8 @@ class UpdateClassesRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:10|unique:classes,name,' . $this->classes->id,
-            'max_user' => 'required|numeric|min:10|max:40'
+            'max_user' => 'required|numeric|min:10|max:40',
+            'session' => 'required|exists:voting_sessions,id'
         ];
     }
 }

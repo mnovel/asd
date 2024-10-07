@@ -17,7 +17,7 @@ class UserController extends Controller
         $user = User::whereDoesntHave('roles', function ($query) {
             $query->whereIn('name', ['Admin', 'TPS']);
         })->get();
-        $class = Classes::all();
+        $class = Classes::orderBy('name')->get();
         confirmDelete("Remove User!", "Are you sure you want to delete user?");
         return view('participant.user.index', compact('user', 'class'));
     }
@@ -36,6 +36,15 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $validated = $request->validated();
+
+        $limitClass = Classes::find($validated['class'])->max_user;
+        $totalUserinClass = User::where('class_id', $validated['class'])->count();
+
+        if ($totalUserinClass >= $limitClass) {
+            toast('Failed to create user: Class user limit reached.', 'error')->autoClose(5000);
+            return redirect()->back();
+        }
+
         $user =  User::create([
             'name' => $validated['name'],
             'class_id' => $validated['class'],
@@ -61,7 +70,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $class = Classes::all();
+        $class = Classes::orderBy('name')->get();
         return view('participant.user.edit', compact('user', 'class'));
     }
 
@@ -84,7 +93,6 @@ class UserController extends Controller
         }
 
         $user->update($dataToUpdate);
-
         toast('Successfully edited a user', 'success')->autoClose(5000);
         return redirect()->route('participant.user');
     }

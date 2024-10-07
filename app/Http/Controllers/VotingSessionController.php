@@ -16,10 +16,9 @@ class VotingSessionController extends Controller
      */
     public function index()
     {
-        $votingSession = VotingSession::all();
-        $class = Classes::all();
+        $votingSession = VotingSession::orderBy('name')->get();
         confirmDelete("Remove Voting Session!", "Are you sure you want to delete voting session?");
-        return view('votingSession.index', compact('votingSession', 'class'));
+        return view('votingSession.index', compact('votingSession'));
     }
 
     /**
@@ -38,7 +37,6 @@ class VotingSessionController extends Controller
         $validated = $request->validated();
         $votingSession = VotingSession::create([
             'name' => $validated['name'],
-            'class' => json_encode($validated['class']),
             'open' => $this->extractOpenTime($validated['time']),
             'close' => $this->extractCloseTime($validated['time']),
         ]);
@@ -59,8 +57,7 @@ class VotingSessionController extends Controller
      */
     public function edit(VotingSession $votingSession)
     {
-        $class = Classes::all();
-        return view('votingSession.edit', compact('votingSession', 'class'));
+        return view('votingSession.edit', compact('votingSession'));
     }
 
     /**
@@ -69,8 +66,13 @@ class VotingSessionController extends Controller
     public function update(UpdateVotingSessionRequest $request, VotingSession $votingSession)
     {
         $validated = $request->validated();
+        $votingSession->update([
+            'name' => $validated['name'],
+            'open' => $this->extractOpenTime($validated['time']),
+            'close' => $this->extractCloseTime($validated['time']),
+        ]);
         toast('Successfully edited a voting session', 'success')->autoClose(5000);
-        return redirect()->route('votingSession.edit');
+        return redirect()->route('votingSession');
     }
 
     /**
@@ -78,9 +80,18 @@ class VotingSessionController extends Controller
      */
     public function destroy(VotingSession $votingSession)
     {
-        $votingSession->delete();
-        toast('Successfully deleted a voting session', 'success')->autoClose(5000);
-        return redirect()->back();
+        try {
+            $votingSession->delete();
+            toast('Successfully deleted a voting session', 'success')->autoClose(5000);
+            return redirect()->back();
+        } catch (\Illuminate\Database\QueryException $err) {
+            if ($err->getCode() === '23000') {
+                toast('Failed to delete voting session: The session has related classes.', 'error')->autoClose(5000);
+            } else {
+                toast('An error occurred while trying to delete the voting session.', 'error')->autoClose(5000);
+            }
+            return redirect()->back();
+        }
     }
 
     private function extractOpenTime($time)

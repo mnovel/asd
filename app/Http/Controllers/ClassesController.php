@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classes;
 use App\Http\Requests\StoreClassesRequest;
 use App\Http\Requests\UpdateClassesRequest;
+use App\Models\VotingSession;
 
 class ClassesController extends Controller
 {
@@ -13,9 +14,10 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        $classes = Classes::all();
+        $classes = Classes::orderBy('name')->get();
+        $session = VotingSession::orderBy('name')->get();
         confirmDelete("Remove Class!", "Are you sure you want to delete class?");
-        return view('participant.class.index', compact('classes'));
+        return view('participant.class.index', compact('classes', 'session'));
     }
 
     /**
@@ -32,7 +34,11 @@ class ClassesController extends Controller
     public function store(StoreClassesRequest $request)
     {
         $validated = $request->validated();
-        Classes::create($validated);
+        Classes::create([
+            'name' => $validated['name'],
+            'max_user' => $validated['max_user'],
+            'session_id' => $validated['session']
+        ]);
         toast('Successfully created a class', 'success')->autoClose(5000);
         return redirect()->back();
     }
@@ -50,7 +56,8 @@ class ClassesController extends Controller
      */
     public function edit(Classes $classes)
     {
-        return view('participant.class.edit', compact('classes'));
+        $session = VotingSession::orderBy('name')->get();
+        return view('participant.class.edit', compact('classes', 'session'));
     }
 
     /**
@@ -59,7 +66,11 @@ class ClassesController extends Controller
     public function update(UpdateClassesRequest $request, Classes $classes)
     {
         $validated = $request->validated();
-        $classes->update($validated);
+        $classes->update([
+            'name' => $validated['name'],
+            'max_user' => $validated['max_user'],
+            'session_id' => $validated['session']
+        ]);
         toast('Successfully edited a class', 'success')->autoClose(5000);
         return redirect()->route('participant.class');
     }
@@ -69,8 +80,17 @@ class ClassesController extends Controller
      */
     public function destroy(Classes $classes)
     {
-        $classes->delete();
-        toast('Successfully deleted a class', 'success')->autoClose(5000);
-        return redirect()->back();
+        try {
+            $classes->delete();
+            toast('Successfully deleted a class', 'success')->autoClose(5000);
+            return redirect()->back();
+        } catch (\Illuminate\Database\QueryException $err) {
+            if ($err->getCode() === '23000') {
+                toast('Failed to delete class: The class has related user.', 'error')->autoClose(5000);
+            } else {
+                toast('An error occurred while trying to delete the class.', 'error')->autoClose(5000);
+            }
+            return redirect()->back();
+        }
     }
 }

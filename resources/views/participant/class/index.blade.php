@@ -49,6 +49,13 @@
                             <x-input type="number" name="max_user" id="max_user" label="Max User" placeholder="Maximum Registered Users" />
                         </div>
                         <div class="col-12">
+                            <x-select name="session" id="session" label="Session">
+                                @foreach ($session as $sessionItem)
+                                    <option value="{{ $sessionItem->id }}"{{ $sessionItem->id == old('session') ? 'selected' : '' }}>{{ $sessionItem->name }}</option>
+                                @endforeach
+                            </x-select>
+                        </div>
+                        <div class="col-12">
                             <div class="d-grid gap-2">
                                 <button class="btn btn-primary" type="submit">Submit</button>
                             </div>
@@ -70,7 +77,9 @@
                             <tr class="text-center">
                                 <th>No</th>
                                 <th>Class Name</th>
+                                <th>Session</th>
                                 <th>Max User</th>
+                                <th>Total User</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -79,7 +88,9 @@
                                 <tr class="align-middle">
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ ucwords($classesItem->name) }}</td>
+                                    <td>{{ $classesItem->votingSession->name }}</td>
                                     <td>{{ $classesItem->max_user }}</td>
+                                    <td>{{ $classesItem->users->count() }}</td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm ">
                                             <a href="{{ route('participant.class.edit', ['classes' => $classesItem->id]) }}" class="btn btn-warning">

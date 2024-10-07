@@ -30,6 +30,15 @@
                             <x-input value="{{ $classes->max_user }}" type="number" name="max_user" id="max_user" label="Max User" placeholder="Maximum Registered Users" />
                         </div>
                         <div class="col-12">
+                            <x-select name="session" id="session" label="Session">
+                                @foreach ($session as $sessionItem)
+                                    <option value="{{ $sessionItem->id }}"{{ $sessionItem->id == (old('session') ?? $classes->session_id) ? 'selected' : '' }}>
+                                        {{ $sessionItem->name }}
+                                    </option>
+                                @endforeach
+                            </x-select>
+                        </div>
+                        <div class="col-12">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-between">
                                 <a href="{{ route('participant.class') }}" class="btn btn-outline-secondary">Cancel</a>
                                 <button class="btn btn-outline-primary">Submit</button>

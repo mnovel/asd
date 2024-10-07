@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Precence;
 use App\Http\Requests\StorePrecenceRequest;
 use App\Http\Requests\UpdatePrecenceRequest;
+use App\Models\VotingSession;
 
 class PrecenceController extends Controller
 {
@@ -13,15 +14,16 @@ class PrecenceController extends Controller
      */
     public function index()
     {
-        //
+        $votingSession = VotingSession::orderBy('name')->get();
+        return view('precence.index', compact('votingSession'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(VotingSession $votingSession)
     {
-        //
+        return view('precence.scan', compact('votingSession'));
     }
 
     /**

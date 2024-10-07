@@ -22,10 +22,8 @@ class StoreVotingSessionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:15',
+            'name' => 'required|string|max:15|unique:voting_sessions,name',
             'time' => 'required|regex:/^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2} [APM]{2} - \d{2}\/\d{2}\/\d{4} \d{2}:\d{2} [APM]{2}$/',
-            'class' => 'required|array',
-            'class.*' => 'exists:classes,id',
         ];
     }
 }
