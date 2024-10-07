@@ -38,6 +38,7 @@ Route::prefix('create')->name('create')->group(function () {
     Route::post('tps', [TpsController::class, 'store'])->name('.tps');
     Route::post('candidate', [CandidateController::class, 'store'])->name('.candidate');
     Route::post('voting-session', [VotingSessionController::class, 'store'])->name('.votingSession');
+    Route::post('precence', [PrecenceController::class, 'store'])->name('.precence');
 });
 
 Route::prefix('edit')->name('edit')->group(function () {
@@ -73,15 +74,25 @@ Route::middleware(['auth:web'])->group(function () {
         Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('.user.edit');
     });
 
-    Route::get('tps', [TpsController::class, 'index'])->name('tps');
-    Route::get('tps/edit/{user}', [TpsController::class, 'edit'])->name('tps.edit');
+    Route::middleware(['permission:TPS'])->group(function () {
+        Route::get('tps', [TpsController::class, 'index'])->name('tps');
+        Route::get('tps/edit/{user}', [TpsController::class, 'edit'])->name('tps.edit');
+    });
 
-    Route::get('candidate', [CandidateController::class, 'index'])->name('candidate');
-    Route::get('candidate/edit/{candidate}', [CandidateController::class, 'edit'])->name('candidate.edit');
+    Route::middleware(['permission:Candidate'])->group(function () {
+        Route::get('candidate', [CandidateController::class, 'index'])->name('candidate');
+        Route::get('candidate/edit/{candidate}', [CandidateController::class, 'edit'])->name('candidate.edit');
+    });
 
-    Route::get('voting-session', [VotingSessionController::class, 'index'])->name('votingSession');
-    Route::get('voting-session/edit/{votingSession}', [VotingSessionController::class, 'edit'])->name('votingSession.edit');
+    Route::middleware(['permission:Voting Session'])->group(function () {
+        Route::get('voting-session', [VotingSessionController::class, 'index'])->name('votingSession');
+        Route::get('voting-session/edit/{votingSession}', [VotingSessionController::class, 'edit'])->name('votingSession.edit');
+    });
 
-    Route::get('precence', [PrecenceController::class, 'index'])->name('precence');
-    Route::get('voting-session/scan/{votingSession}', [PrecenceController::class, 'create'])->name('precence.scan');
+    Route::middleware(['permission:Precence'])->group(function () {
+        Route::get('precence', [PrecenceController::class, 'index'])->name('precence');
+        Route::get('voting-session/scan/{votingSession}', [PrecenceController::class, 'create'])->name('precence.scan');
+    });
+
+    Route::get('barcode', [UserController::class, 'show'])->name('barcode');
 });

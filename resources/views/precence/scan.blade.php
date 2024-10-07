@@ -18,30 +18,69 @@
         <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                const readerElement = document.getElementById("reader");
+                // const readerElement = document.getElementById("reader");
+                // let isProcessing = false; // Flag untuk mencegah spam POST
+
+                // function onScanSuccess(decodedText, decodedResult) {
+                //     if (isProcessing) {
+                //         return; // Jangan lakukan apapun jika request sedang diproses
+                //     }
+
+                //     isProcessing = true; // Set flag menjadi true untuk mencegah request lain
+
+                //     var data = {
+                //         'session_id': '{{ $votingSession->id }}',
+                //         'user_id': decodedResult.text
+                //     };
+
+                //     $.ajax({
+                //         type: "POST",
+                //         url: "{{ route('create.precence') }}",
+                //         data: data,
+                //         dataType: "json",
+                //         success: function(response) {
+                //             console.log('Presence created successfully:', response);
+                //             isProcessing = false; // Reset flag setelah request berhasil
+                //         },
+                //         error: function(xhr, status, error) {
+                //             console.error('Error creating presence:', error);
+                //             isProcessing = false; // Reset flag jika terjadi error
+                //         }
+                //     });
+                // }
+
+                // function onScanFailure(error) {
+                //     console.warn(`Code scan error = ${error}`);
+                // }
+
+                // const html5QrcodeScanner = new Html5QrcodeScanner(
+                //     readerElement.id, {
+                //         fps: 10,
+                //         qrbox: {
+                //             width: 300,
+                //             height: 300
+                //         }
+                //     },
+                //     false
+                // );
+
+                // html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+
 
                 function onScanSuccess(decodedText, decodedResult) {
-                    alert(`Code matched = ${decodedText}`, decodedResult);
-                    // Anda dapat menambahkan logika untuk memproses hasil di sini
+                    if (decodedText !== lastResult) {
+                        ++countResults;
+                        lastResult = decodedText;
+                        console.log(`Scan result ${decodedText}`, decodedResult);
+                    }
                 }
 
-                function onScanFailure(error) {
-                    console.warn(`Code scan error = ${error}`);
-                }
-
-                // Inisialisasi scanner
-                const html5QrcodeScanner = new Html5QrcodeScanner(
-                    readerElement.id, {
+                var html5QrcodeScanner = new Html5QrcodeScanner(
+                    "reader", {
                         fps: 10,
-                        qrbox: {
-                            width: 300,
-                            height: 300
-                        }
-                    },
-                    false
-                );
-                // Mulai pemindaian
-                html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+                        qrbox: 250
+                    });
+                html5QrcodeScanner.render(onScanSuccess);
             });
         </script>
 
