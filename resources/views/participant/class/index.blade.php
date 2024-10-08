@@ -80,6 +80,7 @@
                                 <th>Session</th>
                                 <th>Max User</th>
                                 <th>Total User</th>
+                                <th>Total Unverified Users</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -91,6 +92,7 @@
                                     <td>{{ $classesItem->votingSession->name }}</td>
                                     <td>{{ $classesItem->max_user }}</td>
                                     <td>{{ $classesItem->users->count() }}</td>
+                                    <td>{{ $classesItem->users->where('status_id', 1)->count() }}</td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm ">
                                             <a href="{{ route('participant.class.edit', ['classes' => $classesItem->id]) }}" class="btn btn-warning">
@@ -98,6 +100,9 @@
                                             </a>
                                             <a href="{{ route('delete.class', ['classes' => $classesItem->id]) }}" class="btn btn-danger" data-confirm-delete="true">
                                                 <i class="fa-solid fa-trash-can"></i>
+                                            </a>
+                                            <a href="{{ route('participant.verify', ['class' => $classesItem->id]) }}" class="btn btn-primary">
+                                                <i class="fa-solid fa-check-to-slot"></i>
                                             </a>
                                         </div>
                                     </td>

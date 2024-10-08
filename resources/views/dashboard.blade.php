@@ -193,19 +193,19 @@
         </div>
     </div>
     <div class="col-12 col-md-6">
-        <div class="card card-outline card-info">
+        <div class="card card-primary h-100">
             <div class="card-header">
                 <h3 class="card-title">Real Count Graphic</h3>
             </div>
             <div class="card-body">
-                <canvas id="realCountChart" width="400" height="400"></canvas>
+                <canvas id="realCountChart" class="rounded mx-auto d-block"></canvas>
             </div>
         </div>
     </div>
     <div class="col-12 col-md-6">
-        <div class="card card-outline card-info">
+        <div class="card card-primary h-100">
             <div class="card-header">
-                <h3 class="card-title">Total Number of Voters for the PILKETOS Election at SMA Negeri 1 Pasuruan</h3>
+                <h3 class="card-title">Voter Report</h3>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

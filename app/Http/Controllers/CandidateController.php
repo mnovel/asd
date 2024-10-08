@@ -46,7 +46,7 @@ class CandidateController extends Controller
             'order' => $validated['order'],
         ]);
 
-        toast('Successfully created a candidate', 'success')->autoClose(5000);
+        toast('Successfully created a candidate.', 'success')->autoClose(5000);
         return redirect()->route('candidate');
     }
 
@@ -90,7 +90,7 @@ class CandidateController extends Controller
             'order' => $validated['order'],
         ]);
 
-        toast('Successfully edited candidate', 'success')->autoClose(5000);
+        toast('Successfully edited candidate.', 'success')->autoClose(5000);
         return redirect()->route('candidate');
     }
 
@@ -105,7 +105,7 @@ class CandidateController extends Controller
         }
 
         $candidate->delete();
-        toast('Successfully deleted a candidate', 'success')->autoClose(5000);
+        toast('Successfully deleted a candidate.', 'success')->autoClose(5000);
         return redirect()->back();
     }
 }

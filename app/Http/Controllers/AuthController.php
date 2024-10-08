@@ -30,15 +30,15 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']])) {
 
             if (Auth::user()->status_id >= 2) {
-                toast('Sign In successfully', 'success')->autoClose(5000);
+                toast('Sign In successfully.', 'success')->autoClose(5000);
                 return redirect()->route('dashboard');
             } else {
-                toast('login failed, user status ' . Auth::user()->status->name, 'error')->autoClose(5000);
+                toast('login failed, user status ' . Auth::user()->status->name . '.', 'error')->autoClose(5000);
                 return redirect()->route('login')->withInput();
             }
         }
 
-        toast('Incorrect username or password', 'warning')->autoClose(5000);
+        toast('Incorrect username or password.', 'warning')->autoClose(5000);
         return redirect()->back()->withInput();
     }
 
@@ -62,7 +62,7 @@ class AuthController extends Controller
             'password' => $validated['password'],
         ]);
         $user->assignRole('Participant');
-        toast('Successfully created a user', 'success')->autoClose(5000);
+        toast('Sign Up successfully.', 'success')->autoClose(5000);
         return redirect()->route('login');
     }
 
@@ -71,7 +71,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        toast('Sign Out logout', 'success');
+        toast('Sign Out Successfully.', 'success');
         return redirect()->route('login');
     }
 }

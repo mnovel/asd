@@ -9,7 +9,7 @@
         <x-sidebar-item name="Participant" alias="participant" icon="fa-solid fa-users">
             <x-sidebar-sub-item name="Class" alias="class" :link="route('participant.class')"></x-sidebar-sub-item>
             <x-sidebar-sub-item name="User" alias="user" :link="route('participant.user')"></x-sidebar-sub-item>
-            <x-sidebar-sub-item name="Activation" alias="activation" :link="url('participant.activation')"></x-sidebar-sub-item>
+            <x-sidebar-sub-item name="Activation" alias="verify" :link="route('participant.verify')"></x-sidebar-sub-item>
         </x-sidebar-item>
     @endcan
     @can('TPS')

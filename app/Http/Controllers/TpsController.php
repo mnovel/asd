@@ -39,7 +39,7 @@ class TpsController extends Controller
             'status_id' => 2,
         ]);
         $user->assignRole('Tps');
-        toast('Successfully created a tps', 'success')->autoClose(5000);
+        toast('Successfully created a tps.', 'success')->autoClose(5000);
         return redirect()->back();
     }
 
@@ -78,7 +78,7 @@ class TpsController extends Controller
 
         $user->update($dataToUpdate);
 
-        toast('Successfully edited a tps', 'success')->autoClose(5000);
+        toast('Successfully edited a tps.', 'success')->autoClose(5000);
         return redirect()->route('tps');
     }
 
@@ -88,7 +88,7 @@ class TpsController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        toast('Successfully deleted a tps', 'success')->autoClose(5000);
+        toast('Successfully deleted a tps.', 'success')->autoClose(5000);
         return redirect()->back();
     }
 }

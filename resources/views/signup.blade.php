@@ -71,7 +71,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="d-grid gap-2 col-6 mx-auto">
-                                <button type="submit" class="btn btn-primary">Sign In</button>
+                                <button type="submit" class="btn btn-primary">Sign Up</button>
                             </div>
                         </div>
                     </div>

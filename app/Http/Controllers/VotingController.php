@@ -24,7 +24,7 @@ class VotingController extends Controller
     public function create(User $user)
     {
         if ($user->status->name != 'Registered') {
-            toast('User has no voting rights, user status ' . $user->status->name, 'error')->autoClose(5000);
+            toast('User has no voting rights, user status ' . $user->status->name . '.', 'error')->autoClose(5000);
             return redirect()->back();
         }
 
@@ -41,12 +41,12 @@ class VotingController extends Controller
         $user = User::find($user);
 
         if (!$candidate || !$user) {
-            toast("User or Candidate not found", 'error')->autoClose(5000);
+            toast('User or Candidate not found.', 'error')->autoClose(5000);
             return redirect()->back();
         }
 
         if ($user->status->name != 'Registered') {
-            toast('User has no voting rights, user status ' . $user->status->name, 'error')->autoClose(5000);
+            toast('User has no voting rights, user status ' . $user->status->name . '.', 'error')->autoClose(5000);
             return redirect()->back();
         }
 
@@ -59,7 +59,7 @@ class VotingController extends Controller
         $user->status_id = 4;
         $user->save();
 
-        toast("Voting rights successfully saved", 'success')->autoClose(5000);
+        toast('Voting rights successfully saved.', 'success')->autoClose(5000);
         return redirect()->route('voting');
     }
 

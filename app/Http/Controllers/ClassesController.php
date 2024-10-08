@@ -39,7 +39,7 @@ class ClassesController extends Controller
             'max_user' => $validated['max_user'],
             'session_id' => $validated['session']
         ]);
-        toast('Successfully created a class', 'success')->autoClose(5000);
+        toast('Successfully created a class.', 'success')->autoClose(5000);
         return redirect()->back();
     }
 
@@ -71,7 +71,7 @@ class ClassesController extends Controller
             'max_user' => $validated['max_user'],
             'session_id' => $validated['session']
         ]);
-        toast('Successfully edited a class', 'success')->autoClose(5000);
+        toast('Successfully edited a class.', 'success')->autoClose(5000);
         return redirect()->route('participant.class');
     }
 
@@ -82,7 +82,7 @@ class ClassesController extends Controller
     {
         try {
             $classes->delete();
-            toast('Successfully deleted a class', 'success')->autoClose(5000);
+            toast('Successfully deleted a class.', 'success')->autoClose(5000);
             return redirect()->back();
         } catch (\Illuminate\Database\QueryException $err) {
             if ($err->getCode() === '23000') {

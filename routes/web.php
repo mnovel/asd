@@ -32,35 +32,38 @@ Route::prefix('auth')->name('auth')->group(function () {
     Route::get('signout', [AuthController::class, 'authLogout'])->name('.signOut');
 });
 
-Route::prefix('create')->name('create')->group(function () {
-    Route::post('class', [ClassesController::class, 'store'])->name('.class');
-    Route::post('user', [UserController::class, 'store'])->name('.user');
 
-    Route::post('tps', [TpsController::class, 'store'])->name('.tps');
-    Route::post('candidate', [CandidateController::class, 'store'])->name('.candidate');
-    Route::post('voting-session', [VotingSessionController::class, 'store'])->name('.votingSession');
-    Route::get('precence/{session}/{user}', [PrecenceController::class, 'store'])->name('.precence');
-    Route::get('voting/{candidate}/{user}', [VotingController::class, 'store'])->name('.voting');
+Route::middleware(['auth:web'])->group(function () {
+
+    Route::prefix('create')->name('create')->group(function () {
+        Route::post('class', [ClassesController::class, 'store'])->middleware(['permission:Participant'])->name('.class');
+        Route::post('user', [UserController::class, 'store'])->middleware(['permission:Participant'])->name('.user');
+
+        Route::post('tps', [TpsController::class, 'store'])->middleware(['permission:TPS'])->name('.tps');
+        Route::post('candidate', [CandidateController::class, 'store'])->middleware(['permission:Candidate'])->name('.candidate');
+        Route::post('voting-session', [VotingSessionController::class, 'store'])->middleware(['permission:Voting Session'])->name('.votingSession');
+        Route::get('precence/{session}/{user}', [PrecenceController::class, 'store'])->middleware(['permission:Precence'])->name('.precence');
+        Route::get('voting/{candidate}/{user}', [VotingController::class, 'store'])->middleware(['permission:Voting'])->name('.voting');
+    });
+
+    Route::prefix('edit')->name('edit')->group(function () {
+        Route::put('class/{classes}', [ClassesController::class, 'update'])->middleware(['permission:Participant'])->name('.class');
+        Route::put('user/{user}', [UserController::class, 'update'])->middleware(['permission:Participant'])->name('.user');
+
+        Route::put('tps/{user}', [TpsController::class, 'update'])->middleware(['permission:TPS'])->name('.tps');
+        Route::put('candidate/{candidate}', [CandidateController::class, 'update'])->middleware(['permission:Candidate'])->name('.candidate');
+        Route::put('voting-session/{votingSession}', [VotingSessionController::class, 'update'])->middleware(['permission:Voting Session'])->name('.votingSession');
+    });
+
+    Route::prefix('delete')->name('delete')->group(function () {
+        Route::delete('class/{classes}', [ClassesController::class, 'destroy'])->middleware(['permission:Participant'])->name('.class');
+        Route::delete('user/{user}', [UserController::class, 'destroy'])->middleware(['permission:Participant'])->name('.user');
+
+        Route::delete('tps/{user}', [TpsController::class, 'destroy'])->middleware(['permission:TPS'])->name('.tps');
+        Route::delete('candidate/{candidate}', [CandidateController::class, 'destroy'])->middleware(['permission:Candidate'])->name('.candidate');
+        Route::delete('voting-session/{votingSession}', [VotingSessionController::class, 'destroy'])->middleware(['permission:Voting Session'])->name('.votingSession');
+    });
 });
-
-Route::prefix('edit')->name('edit')->group(function () {
-    Route::put('class/{classes}', [ClassesController::class, 'update'])->name('.class');
-    Route::put('user/{user}', [UserController::class, 'update'])->name('.user');
-
-    Route::put('tps/{user}', [TpsController::class, 'update'])->name('.tps');
-    Route::put('candidate/{candidate}', [CandidateController::class, 'update'])->name('.candidate');
-    Route::put('voting-session/{votingSession}', [VotingSessionController::class, 'update'])->name('.votingSession');
-});
-
-Route::prefix('delete')->name('delete')->group(function () {
-    Route::delete('class/{classes}', [ClassesController::class, 'destroy'])->name('.class');
-    Route::delete('user/{user}', [UserController::class, 'destroy'])->name('.user');
-
-    Route::delete('tps/{user}', [TpsController::class, 'destroy'])->name('.tps');
-    Route::delete('candidate/{candidate}', [CandidateController::class, 'destroy'])->name('.candidate');
-    Route::delete('voting-session/{votingSession}', [VotingSessionController::class, 'destroy'])->name('.votingSession');
-});
-
 Route::middleware(['auth:web'])->group(function () {
 
     Route::get('dashboard', [ReportController::class, 'dashboard'])->middleware(['permission:Dashboard'])->name('dashboard');
@@ -71,6 +74,9 @@ Route::middleware(['auth:web'])->group(function () {
 
         Route::get('user', [UserController::class, 'index'])->name('.user');
         Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('.user.edit');
+        Route::get('user/reset/{user}', [UserController::class, 'reset'])->name('.user.reset');
+        Route::get('user/verify/{class?}', [UserController::class, 'verify'])->name('.verify');
+        Route::get('user/verify/activation/{user}', [UserController::class, 'activation'])->name('.verify.activation');
     });
 
     Route::middleware(['permission:TPS'])->group(function () {

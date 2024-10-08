@@ -24,6 +24,26 @@ class UserController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     */
+    public function verify($class = null)
+    {
+        $usersQuery = User::whereDoesntHave('roles', function ($query) {
+            $query->whereIn('name', ['Admin', 'TPS']);
+        });
+
+        if ($class !== 'all') {
+            $usersQuery->when($class, function ($query) use ($class) {
+                return $query->where('class_id', $class);
+            });
+        }
+
+        $user = $usersQuery->get();
+        $classes = Classes::orderBy('name')->get();
+        return view('participant.user.activation', compact('user', 'class', 'classes'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -55,7 +75,7 @@ class UserController extends Controller
         ]);
 
         $user->assignRole('Participant');
-        toast('Successfully created a user', 'success')->autoClose(5000);
+        toast('Successfully created a user.', 'success')->autoClose(5000);
         return redirect()->back();
     }
 
@@ -95,7 +115,7 @@ class UserController extends Controller
         }
 
         $user->update($dataToUpdate);
-        toast('Successfully edited a user', 'success')->autoClose(5000);
+        toast('Successfully edited a user.', 'success')->autoClose(5000);
         return redirect()->route('participant.user');
     }
 
@@ -105,7 +125,41 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        toast('Successfully deleted a user', 'success')->autoClose(5000);
+        toast('Successfully deleted a user.', 'success')->autoClose(5000);
+        return redirect()->back();
+    }
+
+    public function activation(User $user)
+    {
+        if ($user->status_id != 1) {
+            toast('Failed to reset user status, user status ' . $user->status->name . '.', 'error')->autoClose(5000);
+            return redirect()->back();
+        }
+
+        $user->status_id = 2;
+        $user->save();
+
+        toast('User status has been activated.', 'success')->autoClose(5000);
+        return redirect()->back();
+    }
+
+    public function reset(User $user)
+    {
+        if ($user->status_id < 3) {
+            toast('Failed to reset user status, user status ' . $user->status->name . '.', 'error')->autoClose(5000);
+            return redirect()->back();
+        }
+
+        $user->precence()->delete();
+        if ($user->status_id == 4) {
+            $user->voting()->delete();
+        }
+
+        // Reset status user
+        $user->status_id = 2;
+        $user->save();
+
+        toast('User status has been reset.', 'success')->autoClose(5000);
         return redirect()->back();
     }
 }

@@ -40,7 +40,7 @@ class VotingSessionController extends Controller
             'open' => $this->extractOpenTime($validated['time']),
             'close' => $this->extractCloseTime($validated['time']),
         ]);
-        toast('Successfully created a voting session', 'success')->autoClose(5000);
+        toast('Successfully created a voting session.', 'success')->autoClose(5000);
         return redirect()->back();
     }
 
@@ -71,7 +71,7 @@ class VotingSessionController extends Controller
             'open' => $this->extractOpenTime($validated['time']),
             'close' => $this->extractCloseTime($validated['time']),
         ]);
-        toast('Successfully edited a voting session', 'success')->autoClose(5000);
+        toast('Successfully edited a voting session.', 'success')->autoClose(5000);
         return redirect()->route('votingSession');
     }
 
@@ -82,7 +82,7 @@ class VotingSessionController extends Controller
     {
         try {
             $votingSession->delete();
-            toast('Successfully deleted a voting session', 'success')->autoClose(5000);
+            toast('Successfully deleted a voting session.', 'success')->autoClose(5000);
             return redirect()->back();
         } catch (\Illuminate\Database\QueryException $err) {
             if ($err->getCode() === '23000') {
@@ -96,14 +96,12 @@ class VotingSessionController extends Controller
 
     private function extractOpenTime($time)
     {
-        // Ekstrak bagian waktu open dari input time (misal: "10/05/2024 12:00 AM - 10/05/2024 11:59 PM")
         $timeRange = explode(' - ', $time);
         return Carbon::createFromFormat('m/d/Y h:i A', $timeRange[0]);
     }
 
     private function extractCloseTime($time)
     {
-        // Ekstrak bagian waktu close dari input time (misal: "10/05/2024 12:00 AM - 10/05/2024 11:59 PM")
         $timeRange = explode(' - ', $time);
         return Carbon::createFromFormat('m/d/Y h:i A', $timeRange[1]);
     }
