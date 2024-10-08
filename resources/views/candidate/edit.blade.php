@@ -5,7 +5,7 @@
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-end">
-                <li class="breadcrumb-item"><a href="#">Participant</a></li>
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
                     Candidate
                 </li>
@@ -44,7 +44,7 @@
     <div class="col-12 col-md-6">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Edit a Class Form</h3>
+                <h3 class="card-title">Edit a Candidate Form</h3>
             </div>
             <div class="card-body">
                 <form action="{{ route('edit.candidate', ['candidate' => $candidate->uuid]) }}" method="POST" enctype="multipart/form-data">

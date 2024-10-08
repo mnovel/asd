@@ -1,14 +1,13 @@
 <x-app>
     <x-slot name="header">
         <div class="col-sm-6">
-            <h3 class="mb-0">Scan Precence - {{ $votingSession->name }}</h3>
+            <h3 class="mb-0">Voting</h3>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-end">
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('precence') }}">Precence</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Scan
+                    Voting
                 </li>
             </ol>
         </div>
@@ -21,9 +20,8 @@
                 const readerElement = document.getElementById("reader");
 
                 function onScanSuccess(decodedText, decodedResult) {
-
-                    var url = "{{ route('create.precence', ['session' => ':session', 'user' => ':user']) }}";
-                    url = url.replace(':session', '{{ $votingSession->id }}').replace(':user', decodedText);
+                    var url = "{{ route('voting.ballotBox', ['user' => ':key']) }}";
+                    url = url.replace(':key', decodedText);
 
                     html5QrcodeScanner.clear().then(_ => {
                         window.location.href = url;
@@ -53,10 +51,10 @@
 
     </x-slot>
 
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-8">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Scan Precence</h3>
+                <h3 class="card-title">Scan QR Code</h3>
             </div>
             <div class="card-body">
                 <div id="reader" class="img-fluid img-thumbnail"></div>

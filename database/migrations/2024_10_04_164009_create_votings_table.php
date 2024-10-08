@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('uuid')->on('users')->onDelete('cascade');
-            $table->foreign('candidate_id')->references('uuid')->on('candidates')->onDelete('cascade');
+            $table->foreign('candidate_id')->references('uuid')->on('candidates')->onDelete('restrict');
         });
     }
 

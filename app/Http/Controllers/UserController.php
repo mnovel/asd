@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Classes;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -52,6 +53,7 @@ class UserController extends Controller
             'email' => $validated['email'],
             'password' => $validated['password'],
         ]);
+
         $user->assignRole('Participant');
         toast('Successfully created a user', 'success')->autoClose(5000);
         return redirect()->back();
@@ -60,9 +62,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show()
     {
-        //
+        $user = Auth::user();
+        return view('participant.user.dpt', compact('user'));
     }
 
     /**
@@ -84,7 +87,6 @@ class UserController extends Controller
         $dataToUpdate = [
             'name' => $validated['name'],
             'class_id' => $validated['class'],
-            'status_id' => 2,
             'email' => $validated['email'],
         ];
 

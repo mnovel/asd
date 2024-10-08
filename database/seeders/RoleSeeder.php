@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
             'Voting Session',
             'Precence',
             'Voting',
-            'Barcode',
+            'DPT',
         ];
 
         foreach ($permissions as $permission) {
@@ -37,14 +37,16 @@ class RoleSeeder extends Seeder
                 'Candidate',
                 'Voting Session',
                 'Precence',
+                'Voting',
             ],
             'Tps' => [
                 'Dashboard',
                 'Voting',
+                'Precence'
             ],
             'Participant' => [
                 'Dashboard',
-                'Barcode'
+                'DPT'
             ]
         ];
 

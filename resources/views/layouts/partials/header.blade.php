@@ -6,10 +6,12 @@
     </ul>
     <ul class="navbar-nav ms-auto">
         <li class="nav-item"> <a class="nav-link" data-widget="navbar-search" href="#" role="button"> <i class="bi bi-search"></i> </a> </li>
-        <li class="nav-item dropdown"> <a class="nav-link" data-bs-toggle="dropdown" href="#"> <i class="bi bi-chat-text"></i> <span class="navbar-badge badge text-bg-danger">3</span> </a>
+        <li class="nav-item dropdown"> <a class="nav-link" data-bs-toggle="dropdown" href="#"> <i class="bi bi-chat-text"></i> <span
+                    class="navbar-badge badge text-bg-danger">3</span> </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end"> <a href="#" class="dropdown-item">
                     <div class="d-flex">
-                        <div class="flex-shrink-0"> <img src="{{ asset('storage/template/dist/assets/img/user1-128x128.jpg') }}" alt="User Avatar" class="img-size-50 rounded-circle me-3">
+                        <div class="flex-shrink-0"> <img src="{{ asset('storage/template/dist/assets/img/user1-128x128.jpg') }}" alt="User Avatar"
+                                class="img-size-50 rounded-circle me-3">
                         </div>
                         <div class="flex-grow-1">
                             <h3 class="dropdown-item-title">
@@ -24,7 +26,8 @@
                 </a>
                 <div class="dropdown-divider"></div> <a href="#" class="dropdown-item">
                     <div class="d-flex">
-                        <div class="flex-shrink-0"> <img src="{{ asset('storage/template/dist/assets/img/user8-128x128.jpg') }}" alt="User Avatar" class="img-size-50 rounded-circle me-3">
+                        <div class="flex-shrink-0"> <img src="{{ asset('storage/template/dist/assets/img/user8-128x128.jpg') }}" alt="User Avatar"
+                                class="img-size-50 rounded-circle me-3">
                         </div>
                         <div class="flex-grow-1">
                             <h3 class="dropdown-item-title">
@@ -39,7 +42,8 @@
                 </a>
                 <div class="dropdown-divider"></div> <a href="#" class="dropdown-item">
                     <div class="d-flex">
-                        <div class="flex-shrink-0"> <img src="{{ asset('storage/template/dist/assets/img/user3-128x128.jpg') }}" alt="User Avatar" class="img-size-50 rounded-circle me-3">
+                        <div class="flex-shrink-0"> <img src="{{ asset('storage/template/dist/assets/img/user3-128x128.jpg') }}" alt="User Avatar"
+                                class="img-size-50 rounded-circle me-3">
                         </div>
                         <div class="flex-grow-1">
                             <h3 class="dropdown-item-title">
@@ -55,7 +59,8 @@
                 <div class="dropdown-divider"></div> <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
             </div>
         </li>
-        <li class="nav-item dropdown"> <a class="nav-link" data-bs-toggle="dropdown" href="#"> <i class="bi bi-bell-fill"></i> <span class="navbar-badge badge text-bg-warning">15</span> </a>
+        <li class="nav-item dropdown"> <a class="nav-link" data-bs-toggle="dropdown" href="#"> <i class="bi bi-bell-fill"></i> <span
+                    class="navbar-badge badge text-bg-warning">15</span> </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end"> <span class="dropdown-item dropdown-header">15 Notifications</span>
                 <div class="dropdown-divider"></div> <a href="#" class="dropdown-item"> <i class="bi bi-envelope me-2"></i> 4 new messages
                     <span class="float-end text-secondary fs-7">3 mins</span> </a>
@@ -77,18 +82,19 @@
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img src="{{ asset('storage/template/dist/assets/img/user2-160x160.jpg') }}" class="user-image rounded-circle shadow" alt="User Image">
-                <span class="d-none d-md-inline">//</span>
+                <span class="d-none d-md-inline">{{ ucwords(Auth::user()->name) }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <li class="user-header text-bg-primary"> <img src="{{ asset('storage/template/dist/assets/img/user2-160x160.jpg') }}" class="rounded-circle shadow" alt="User Image">
+                <li class="user-header text-bg-primary"> <img src="{{ asset('storage/template/dist/assets/img/user2-160x160.jpg') }}" class="rounded-circle shadow"
+                        alt="User Image">
                     <p>
-                        //
-                        <small></small>
+                        {{ ucwords(Auth::user()->name) }}
+                        <small>{{ Auth::user()->email }}</small>
                     </p>
                 </li>
                 <li class="user-footer">
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+                    <a href="{{ route('auth.signOut') }}" class="btn btn-default btn-flat float-end">Sign out</a>
                 </li>
             </ul>
         </li>

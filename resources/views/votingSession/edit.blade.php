@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-12">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-between">
-                                <a href="{{ route('tps') }}" class="btn btn-outline-secondary">Cancel</a>
+                                <a href="{{ route('votingSession') }}" class="btn btn-outline-secondary">Cancel</a>
                                 <button class="btn btn-outline-primary">Submit</button>
                             </div>
                         </div>

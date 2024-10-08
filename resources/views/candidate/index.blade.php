@@ -16,6 +16,13 @@
     <x-slot name="style">
         <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.bootstrap5.css">
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-bs5.css" rel="stylesheet">
+        <style>
+            .responsive {
+                width: 100%;
+                max-width: 200px;
+                height: auto;
+            }
+        </style>
     </x-slot>
 
     <x-slot name="script">
@@ -107,7 +114,7 @@
                             @foreach ($candidate as $candidateItem)
                                 <tr>
                                     <td class="text-center">{{ $candidateItem->order }}</td>
-                                    <td><img src="{{ url($candidateItem->photo) }}" alt="{{ $candidateItem->name }}" class="rounded mx-auto d-block img-fluid"></td>
+                                    <td><img src="{{ url($candidateItem->photo) }}" alt="{{ $candidateItem->name }}" class="responsive" width="600" height="400"></td>
                                     <td>{{ $candidateItem->name }}</td>
                                     <td>{!! $candidateItem->visi !!}</td>
                                     <td>{!! $candidateItem->misi !!}</td>

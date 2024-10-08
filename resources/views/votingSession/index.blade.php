@@ -90,8 +90,8 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ ucwords($votingSessionItem->name) }}</td>
                                     <td>
-                                        {{ \Carbon\Carbon::parse($votingSessionItem->open)->format('d/m/Y h:i A') }} -
-                                        {{ \Carbon\Carbon::parse($votingSessionItem->close)->format('d/m/Y h:i A') }}
+                                        {{ Carbon::parse($votingSessionItem->open)->format('d F Y') }} (
+                                        {{ Carbon::parse($votingSessionItem->open)->format('h:i A') . ' - ' . Carbon::parse($votingSessionItem->close)->format('h:i A') }})
                                     </td>
                                     <td>{{ $votingSessionItem->class->pluck('name')->implode(', ') }}</td>
                                     <td class="text-center">

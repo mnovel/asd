@@ -4,8 +4,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\PrecenceController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TpsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VotingController;
 use App\Http\Controllers\VotingSessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,10 +28,9 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 
 Route::prefix('auth')->name('auth')->group(function () {
     Route::post('signin', [AuthController::class, 'authSignIn'])->name('.signIn');
-    // Route::post('signup', [VoterController::class, 'store'])->name('.signUp');
-    Route::get('signout', [AuthController::class, 'authLogout'])->name('.logout');
+    Route::post('signup', [AuthController::class, 'authSignUp'])->name('.signUp');
+    Route::get('signout', [AuthController::class, 'authLogout'])->name('.signOut');
 });
-
 
 Route::prefix('create')->name('create')->group(function () {
     Route::post('class', [ClassesController::class, 'store'])->name('.class');
@@ -38,7 +39,8 @@ Route::prefix('create')->name('create')->group(function () {
     Route::post('tps', [TpsController::class, 'store'])->name('.tps');
     Route::post('candidate', [CandidateController::class, 'store'])->name('.candidate');
     Route::post('voting-session', [VotingSessionController::class, 'store'])->name('.votingSession');
-    Route::post('precence', [PrecenceController::class, 'store'])->name('.precence');
+    Route::get('precence/{session}/{user}', [PrecenceController::class, 'store'])->name('.precence');
+    Route::get('voting/{candidate}/{user}', [VotingController::class, 'store'])->name('.voting');
 });
 
 Route::prefix('edit')->name('edit')->group(function () {
@@ -59,12 +61,9 @@ Route::prefix('delete')->name('delete')->group(function () {
     Route::delete('voting-session/{votingSession}', [VotingSessionController::class, 'destroy'])->name('.votingSession');
 });
 
-
 Route::middleware(['auth:web'])->group(function () {
 
-    Route::get('dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard')->middleware(['permission:Dashboard']);
+    Route::get('dashboard', [ReportController::class, 'dashboard'])->middleware(['permission:Dashboard'])->name('dashboard');
 
     Route::middleware(['permission:Participant'])->prefix('participant')->name('participant')->group(function () {
         Route::get('class', [ClassesController::class, 'index'])->name('.class');
@@ -91,8 +90,13 @@ Route::middleware(['auth:web'])->group(function () {
 
     Route::middleware(['permission:Precence'])->group(function () {
         Route::get('precence', [PrecenceController::class, 'index'])->name('precence');
-        Route::get('voting-session/scan/{votingSession}', [PrecenceController::class, 'create'])->name('precence.scan');
+        Route::get('precence/scan/{votingSession}', [PrecenceController::class, 'create'])->name('precence.scan');
     });
 
-    Route::get('barcode', [UserController::class, 'show'])->name('barcode');
+    Route::middleware(['permission:Voting'])->group(function () {
+        Route::get('voting', [VotingController::class, 'index'])->name('voting');
+        Route::get('voting/{user}', [VotingController::class, 'create'])->name('voting.ballotBox');
+    });
+
+    Route::get('dpt', [UserController::class, 'show'])->middleware(['permission:DPT'])->name('dpt');
 });

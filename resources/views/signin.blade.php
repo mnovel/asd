@@ -32,12 +32,12 @@
                 <form action="{{ route('auth.signIn') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control @error('username')is-invalid  @enderror" placeholder="Email" name="email" id="email"
-                            value="{{ old('username') ?? 'admin@gmail.com' }}">
+                        <input type="email" class="form-control @error('email')is-invalid  @enderror" placeholder="Email" name="email" id="email"
+                            value="{{ old('email') ?? 'admin@gmail.com' }}">
                         <div class="input-group-text">
                             <span class="fa-solid fa-envelope"></span>
                         </div>
-                        @error('username')
+                        @error('email')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>

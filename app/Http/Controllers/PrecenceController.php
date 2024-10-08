@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Precence;
 use App\Http\Requests\StorePrecenceRequest;
 use App\Http\Requests\UpdatePrecenceRequest;
 use App\Models\VotingSession;
+use App\Models\Precence;
+use App\Models\User;
+use Carbon\Carbon;
 
 class PrecenceController extends Controller
 {
@@ -29,9 +31,47 @@ class PrecenceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePrecenceRequest $request)
+    public function store($session, $user)
     {
-        //
+        $session = VotingSession::find($session);
+        $user = User::find($user);
+
+        if (!$session || !$user) {
+            toast("User or session not found", 'error')->autoClose(5000);
+            return redirect()->back();
+        }
+
+        if ($user->status->name != 'Verified') {
+            toast('Failed to do attendance, user status ' . $user->status->name, 'error')->autoClose(5000);
+            return redirect()->back();
+        }
+
+        if ($user->class->votingSession->id != $session->id) {
+            toast("User is not registered for the session", 'error')->autoClose(5000);
+            return redirect()->back();
+        }
+
+        if (Carbon::now() < Carbon::parse($session->open)) {
+            toast("$session->name is not yet open", 'error')->autoClose(5000);
+            return redirect()->back();
+        }
+
+        if (Carbon::now() > Carbon::parse($session->close)) {
+            toast("$session->name is closed", 'error')->autoClose(5000);
+            return redirect()->back();
+        }
+
+        Precence::firstOrCreate([
+            'user_id' => $user->uuid
+        ], [
+            'session_id' => $session->id,
+        ]);
+
+        $user->status_id = 3;
+        $user->save();
+
+        toast("Successfully did the attendance", 'success')->autoClose(5000);
+        return redirect()->back();
     }
 
     /**
