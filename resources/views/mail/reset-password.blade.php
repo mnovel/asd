@@ -9,5 +9,5 @@
     If you didn't request this, please ignore this email.
 
     Thanks,
-    MPK SMA Negeri 1 Pasuruan
+    {{ GlobalHelper::setting('author') }}
 </x-mail::message>

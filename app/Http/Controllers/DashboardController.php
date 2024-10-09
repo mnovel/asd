@@ -33,7 +33,7 @@ class DashboardController extends Controller
     public function profile()
     {
         $user = User::where('uuid', Auth::user()->uuid)->first();
-        return view('Profile', compact('user'));
+        return view('profile', compact('user'));
     }
 
     public function setting()
