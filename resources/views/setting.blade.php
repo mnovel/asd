@@ -46,10 +46,10 @@
                     @method('PUT')
                     <div class="row g-4">
                         <div class="col-12">
-                            <x-input :value="$setting->name" type="text" name="app_name" id="app_name" label="App Name" placeholder="App Name" />
+                            <x-input :value="$setting->app_name" type="text" name="app_name" id="app_name" label="App Name" placeholder="App Name" />
                         </div>
                         <div class="col-12">
-                            <x-input :value="$setting->sort_name" type="text" name="instansi" id="instansi" label="Instansi" placeholder="Instansi" />
+                            <x-input :value="$setting->instansi" type="text" name="instansi" id="instansi" label="Instansi" placeholder="Instansi" />
                         </div>
                         <div class="col-12">
                             <x-input :value="$setting->author" type="text" name="author" id="author" label="Author" placeholder="Author" />

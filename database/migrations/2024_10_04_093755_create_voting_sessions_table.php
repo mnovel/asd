@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,8 +15,8 @@ return new class extends Migration
         Schema::create('voting_sessions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamp('open');
-            $table->timestamp('close');
+            $table->timestamp('open')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('close')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
         });
     }

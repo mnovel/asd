@@ -23,7 +23,7 @@ class UpdateSettingRequest extends FormRequest
     {
         return [
             'app_name' => 'required|string|max:100',
-            'instansi' => 'required|string|max:20',
+            'instansi' => 'required|string|max:50',
             'author' => 'required|string|max:100',
             'description' => 'required|string|max:300',
             'keywords' => 'required|string|max:300',

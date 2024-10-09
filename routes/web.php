@@ -129,6 +129,6 @@ Route::middleware(['auth:web'])->group(function () {
         Artisan::call('optimize');
 
         toast('Successfully cleared cache', 'success')->autoClose(5000);
-        return redirect('/');
+        return redirect()->back();
     })->name('clearCache');
 });

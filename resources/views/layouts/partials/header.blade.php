@@ -12,7 +12,7 @@
         </li>
         @role('Admin')
             <li class="nav-item d-none d-md-block"> <a href="{{ route('resetDatabase') }}" class="nav-link">Reset Database</a> </li>
-            <li class="nav-item d-none d-md-block"> <a href="{{ route('clearCache') }}" class="nav-link">Clear Cache</a> </li>
+            <li class="nav-item d-none d-md-block"> <a href="{{ route('dashboard') }}" class="nav-link">Clear Cache</a> </li>
         @endrole
     </ul>
     <ul class="navbar-nav ms-auto">
