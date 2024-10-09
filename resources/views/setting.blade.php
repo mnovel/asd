@@ -29,8 +29,7 @@
                     }
                 });
 
-                $('#time').val(
-                    '{{ \Carbon\Carbon::parse($setting->open)->format('m/d/Y h:i A') . ' - ' . \Carbon\Carbon::parse($setting->close)->format('m/d/Y h:i A') }}');
+                $('#time').val('{{ Carbon::parse($setting->open)->format('m/d/Y h:i A') . ' - ' . Carbon::parse($setting->close)->format('m/d/Y h:i A') }}');
             })
         </script>
     </x-slot>

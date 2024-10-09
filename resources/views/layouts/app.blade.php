@@ -38,7 +38,7 @@
             </div>
         </main>
         <footer class="app-footer">
-            <div class="float-end d-none d-sm-inline">Anything you want</div> <strong>
+            <div class="float-end d-none d-sm-inline"></div> <strong>
                 Copyright &copy; {{ date('Y') }}&nbsp;
                 <a href="https://www.instagram.com/sewagati_smasa/" class="text-decoration-none">{{ GlobalHelper::setting('author') }}</a>.
             </strong>
