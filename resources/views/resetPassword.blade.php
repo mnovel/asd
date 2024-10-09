@@ -16,9 +16,10 @@
 <body class="lockscreen bg-dark-blue">
     <div class="lockscreen-wrapper">
         <div class="lockscreen-logo">
+            <img src="{{ asset('storage/template/dist/assets/img/logo.png') }}" alt="" class="img-fluid" width="40%"><br>
             <a href="{{ route('login') }}" class="text-white"><b>{{ GlobalHelper::setting('app_name') }}</b><br>{{ GlobalHelper::setting('instansi') }}</a>
         </div>
-        <div class="lockscreen-name">{{ Auth::user()->name ?? '' }}</div>
+        <div class="lockscreen-name text-white">{{ Auth::user()->name ?? '' }}</div>
         <div class="lockscreen-item">
             <div class="lockscreen-image"> <img src="{{ asset('storage/template/dist/assets/img/user.png') }}" alt="User Image"> </div>
             <form class="lockscreen-credentials" action="{{ route('auth.resetPassword') }}" method="POST">

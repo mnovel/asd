@@ -43,9 +43,8 @@
                             <x-input type="password" name="password" id="password" label="Password" placeholder="Password" />
                         </div>
                         <div class="col-12">
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-between">
-                                <a href="{{ route('tps') }}" class="btn btn-secondary">Cancel</a>
-                                <button class="btn btn-beige">Submit</button>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-beige" type="submit">Submit</button>
                             </div>
                         </div>
                     </div>

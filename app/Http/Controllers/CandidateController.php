@@ -53,9 +53,10 @@ class CandidateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Candidate $candidate)
+    public function show()
     {
-        //
+        $candidate = Candidate::orderBy('order')->get();
+        return view('candidate', compact('candidate'));
     }
 
     /**

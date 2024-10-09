@@ -43,7 +43,6 @@
                 <a href="https://www.instagram.com/sewagati_smasa/" class="text-decoration-none">{{ GlobalHelper::setting('author') }}</a>.
             </strong>
             All rights reserved.
-
         </footer>
     </div>
     @include('layouts.partials.scripts')

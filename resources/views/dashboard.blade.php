@@ -21,24 +21,23 @@
         <script src="https://cdn.datatables.net/2.1.7/js/dataTables.bootstrap5.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
         <script>
-            // URL ke API yang menyediakan data (contoh URL)
             const apiUrl = "{{ route('real-count') }}";
 
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    const labels = data.map(item => item.name); // Nama kandidat
-                    const votes = data.map(item => item.voting_count); // Jumlah suara
+                    const labels = data.map(item => item.name);
+                    const votes = data.map(item => item.voting_count);
 
-                    // Render Pie Chart
+
                     const ctx = document.getElementById('realCountChart').getContext('2d');
                     const realCountChart = new Chart(ctx, {
-                        type: 'pie', // Tipe chart
+                        type: 'pie',
                         data: {
-                            labels: labels, // Labels (nama kandidat)
+                            labels: labels,
                             datasets: [{
                                 label: 'Total Votes',
-                                data: votes, // Data jumlah suara
+                                data: votes,
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                     'rgba(54, 162, 235, 0.2)',
@@ -75,7 +74,6 @@
                 .catch(error => console.error('Error fetching data:', error));
         </script>
 
-
         <script>
             $(document).ready(function() {
                 var table = $('#table').DataTable({
@@ -84,8 +82,8 @@
                         className: 'dt-head-left dt-body-left'
                     }],
                     order: [
+                        [1, 'asc'],
                         [2, 'asc'],
-                        [1, 'asc']
                     ],
                     pageLength: 50,
                 });
@@ -115,7 +113,7 @@
                         var percentageCell = $(this).find('td').eq(5);
 
                         if (totalCount > 0) {
-                            var percentage = (activeCount / totalCount) * 100;
+                            var percentage = (totalCount / activeCount) * 100;
                             percentageCell.text(percentage.toFixed(2) + '%');
                         } else {
                             percentageCell.text('0.00%');
@@ -192,7 +190,7 @@
         </div>
     </div>
     <div class="col-12 col-md-6">
-        <div class="card h-100">
+        <div class="card">
             <div class="card-header bg-brown">
                 <h3 class="card-title">Real Count Graphic</h3>
             </div>
@@ -202,7 +200,7 @@
         </div>
     </div>
     <div class="col-12 col-md-6">
-        <div class="card h-100">
+        <div class="card">
             <div class="card-header bg-brown">
                 <h3 class="card-title">Voter Report</h3>
             </div>

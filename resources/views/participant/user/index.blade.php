@@ -29,8 +29,8 @@
                         className: 'dt-head-left dt-body-left'
                     }],
                     order: [
-                        [3, 'asc'],
-                        [1, 'asc']
+                        [4, 'asc'],
+                        [2, 'asc']
                     ]
                 });
 

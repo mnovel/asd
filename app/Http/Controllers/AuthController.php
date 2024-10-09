@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\GlobalHelper;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Mail\ResetPassword;
 use App\Models\Classes;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +24,16 @@ class AuthController extends Controller
 
     public function register()
     {
+
+        if (Carbon::now() < Carbon::parse(GlobalHelper::setting('open'))) {
+            toast("Registration is not yet open.", 'error')->autoClose(5000);
+            return redirect()->back();
+        }
+
+        if (Carbon::now() > Carbon::parse(GlobalHelper::setting('close'))) {
+            toast("Registration is closed.", 'error')->autoClose(5000);
+            return redirect()->back();
+        }
 
         $class = Classes::orderBy('name')->get();
         return view('signup', compact('class'));
@@ -40,7 +52,7 @@ class AuthController extends Controller
 
             if (Auth::user()->status_id >= 2) {
                 toast('Sign In successfully.', 'success')->autoClose(5000);
-                return redirect()->route('dashboard');
+                return redirect()->intended(route('dashboard'));
             } else {
                 toast('login failed, user status ' . Auth::user()->status->name . '.', 'error')->autoClose(5000);
                 return redirect()->route('login')->withInput();

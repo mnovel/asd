@@ -66,6 +66,7 @@ Route::middleware(['auth:web'])->group(function () {
         Route::delete('voting-session/{votingSession}', [VotingSessionController::class, 'destroy'])->middleware(['permission:Voting Session'])->name('.votingSession');
     });
 });
+
 Route::middleware(['auth:web'])->group(function () {
 
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->middleware(['permission:Dashboard'])->name('dashboard');
@@ -112,6 +113,8 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
 
     Route::get('setting', [DashboardController::class, 'setting'])->name('setting');
+
+    Route::get('list-candidate', [CandidateController::class, 'show'])->middleware('role:Participant')->name('listCandidate');
 
     Route::get('reset-database', function () {
         Artisan::call('migrate:reset');

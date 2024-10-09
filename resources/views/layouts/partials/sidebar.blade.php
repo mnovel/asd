@@ -2,6 +2,9 @@
     @can('Dashboard')
         <x-sidebar-item name="Dashboard" alias="dashboard" :link="route('dashboard')" icon="fa-solid fa-house-chimney"></x-sidebar-item>
     @endcan
+    @role('Participant')
+        <x-sidebar-item name="Candidate" alias="listCandidate" :link="route('candidate.show')" icon="fa-solid fa-house-chimney"></x-sidebar-item>
+    @endrole
     @can('Setting')
         <x-sidebar-item name="Setting" alias="setting" :link="route('setting')" icon="fa-solid fa-gear"></x-sidebar-item>
     @endcan

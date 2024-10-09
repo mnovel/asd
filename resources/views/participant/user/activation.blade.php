@@ -29,8 +29,8 @@
                         className: 'dt-head-left dt-body-left'
                     }],
                     order: [
-                        [3, 'asc'],
-                        [1, 'asc']
+                        [4, 'asc'],
+                        [2, 'asc']
                     ]
                 });
 
@@ -92,6 +92,7 @@
                             <tr class="text-center">
                                 <th>No</th>
                                 <th>Name</th>
+                                <th>NIS</th>
                                 <th>Email</th>
                                 <th>Class</th>
                                 <th>Status</th>
@@ -103,6 +104,7 @@
                                 <tr class="align-middle">
                                     <td></td>
                                     <td>{{ ucwords($userItem->name) }}</td>
+                                    <td>{{ $userItem->nis }}</td>
                                     <td>{{ $userItem->email }}</td>
                                     <td>{{ $userItem->class->name }}</td>
                                     <td>{{ $userItem->status->name }}</td>

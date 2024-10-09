@@ -64,9 +64,8 @@
                             <x-input type="text" name="time" id="time" label="Time Schedule" />
                         </div>
                         <div class="col-12">
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-between">
-                                <a href="{{ route('tps') }}" class="btn btn-secondary">Cancel</a>
-                                <button class="btn btn-beige">Submit</button>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-beige" type="submit">Submit</button>
                             </div>
                         </div>
                     </div>

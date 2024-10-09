@@ -14,37 +14,11 @@
         </div>
     </x-slot>
 
-    <x-slot name="style">
-        <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.bootstrap5.css">
-        <style>
-            .responsive {
-                width: 100%;
-                max-width: 200px;
-                height: auto;
-            }
-        </style>
-    </x-slot>
-
-    <x-slot name="script">
-        <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
-        <script src="https://cdn.datatables.net/2.1.7/js/dataTables.bootstrap5.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#table').DataTable({
-                    columnDefs: [{
-                        targets: '_all',
-                        className: 'dt-head-left dt-body-left'
-                    }]
-                });
-            })
-        </script>
-    </x-slot>
-
     <div class="col-12">
         <div class="card">
             <div class="card-header text-center bg-beige">
                 <h4 class="fw-bolder">DAFTAR CALON KANDIDAT KETUA OSIS</h4>
-                <h4 class="fw-bolder">SMA NEGERI 1 PASURUAN</h4>
+                <h4 class="fw-bolder">{{ strtoupper(GlobalHelper::setting('instansi')) }}</h4>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -60,7 +34,7 @@
                                 </div>
                                 <div class="card-footer bg-transparent">
                                     <div class="d-grid gap-2">
-                                        <a href="{{ route('create.voting', ['candidate' => $candidateItem->uuid, 'user' => $user->uuid]) }}" class="btn btn-lg btn-beige"
+                                        <a href="{{ route('create.voting', ['candidate' => $candidateItem->uuid, 'user' => $user->uuid]) }}" class="btn btn-lg btn-beige fw-bolder"
                                             type="button">
                                             (Klik/Pilih)
                                             - CALON NO {{ $candidateItem->order }}
