@@ -9,6 +9,7 @@ use App\Http\Controllers\TpsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VotingController;
 use App\Http\Controllers\VotingSessionController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -111,4 +112,11 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
 
     Route::get('setting', [DashboardController::class, 'setting'])->name('setting');
+
+    Route::get('reset-database', function () {
+        Artisan::call('migrate:reset');
+        Artisan::call('migrate --seed');
+        toast('Successfully reset database', 'success')->autoClose(5000);
+        return redirect()->route('login');
+    })->name('resetDatabase');
 });
