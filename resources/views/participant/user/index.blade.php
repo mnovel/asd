@@ -53,8 +53,8 @@
     </x-slot>
 
     <div class="col-12 col-md-4">
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Create a User Form</h3>
             </div>
             <div class="card-body">
@@ -63,6 +63,9 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <x-input type="text" name="name" id="name" label="Name" placeholder="Full Name" />
+                        </div>
+                        <div class="col-12">
+                            <x-input type="text" name="nis" id="nis" label="NIS" placeholder="NIS" />
                         </div>
                         <div class="col-12">
                             <x-select name="class" id="class" label="Class">
@@ -79,7 +82,7 @@
                         </div>
                         <div class="col-12">
                             <div class="d-grid gap-2">
-                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-beige" type="submit">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -88,8 +91,8 @@
         </div>
     </div>
     <div class="col-12 col-md-8">
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Table User</h3>
             </div>
             <div class="card-body">
@@ -99,6 +102,7 @@
                             <tr class="text-center">
                                 <th>No</th>
                                 <th>Name</th>
+                                <th>NIS</th>
                                 <th>Email</th>
                                 <th>Class</th>
                                 <th>Status</th>
@@ -110,6 +114,7 @@
                                 <tr class="align-middle">
                                     <td></td>
                                     <td>{{ ucwords($userItem->name) }}</td>
+                                    <td>{{ $userItem->nis }}</td>
                                     <td>{{ $userItem->email }}</td>
                                     <td>{{ $userItem->class->name }}</td>
                                     <td>{{ $userItem->status->name }}</td>

@@ -52,8 +52,8 @@
     </x-slot>
 
     <div class="col-12 col-md-8">
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Scan QR Code</h3>
             </div>
             <div class="card-body">

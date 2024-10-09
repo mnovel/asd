@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Mail\ResetPassword;
 use App\Models\Classes;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -21,6 +25,11 @@ class AuthController extends Controller
 
         $class = Classes::orderBy('name')->get();
         return view('signup', compact('class'));
+    }
+
+    public function resetPassword()
+    {
+        return view('resetPassword');
     }
 
     public function authSignIn(LoginRequest $request)
@@ -63,6 +72,31 @@ class AuthController extends Controller
         ]);
         $user->assignRole('Participant');
         toast('Sign Up successfully.', 'success')->autoClose(5000);
+        return redirect()->route('login');
+    }
+
+    public function authResetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|exists:users,email',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors()->all();
+            $errorMessage = implode(', ', $errors);
+            toast($errorMessage, 'error')->autoClose(5000);
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        $newPassword = Str::random(8);
+        $user->password = $newPassword;
+        $user->save();
+
+        Mail::to($user->email)->send(new ResetPassword($user->email, $newPassword));
+
+        toast('Successfully reset password, please check your email.', 'success')->autoClose(5000);
         return redirect()->route('login');
     }
 

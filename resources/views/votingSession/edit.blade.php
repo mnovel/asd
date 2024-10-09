@@ -36,8 +36,8 @@
     </x-slot>
 
     <div class="col-12 col-md-6">
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Edit a Voting Session Form</h3>
             </div>
             <div class="card-body">
@@ -53,8 +53,8 @@
                         </div>
                         <div class="col-12">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-between">
-                                <a href="{{ route('votingSession') }}" class="btn btn-outline-secondary">Cancel</a>
-                                <button class="btn btn-outline-primary">Submit</button>
+                                <a href="{{ route('votingSession') }}" class="btn btn-secondary">Cancel</a>
+                                <button class="btn btn-beige">Submit</button>
                             </div>
                         </div>
                     </div>

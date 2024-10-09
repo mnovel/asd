@@ -20,9 +20,10 @@ class RoleSeeder extends Seeder
             'TPS',
             'Candidate',
             'Voting Session',
-            'Precence',
+            'Registration',
             'Voting',
             'DPT',
+            'Setting',
         ];
 
         foreach ($permissions as $permission) {
@@ -36,13 +37,14 @@ class RoleSeeder extends Seeder
                 'TPS',
                 'Candidate',
                 'Voting Session',
-                'Precence',
+                'Registration',
                 'Voting',
+                'Setting',
             ],
             'Tps' => [
                 'Dashboard',
                 'Voting',
-                'Precence'
+                'Registration'
             ],
             'Participant' => [
                 'Dashboard',

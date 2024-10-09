@@ -168,6 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\GlobalServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -183,7 +184,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-        'Carbon' => Carbon\Carbon::class
+        'Carbon' => Carbon\Carbon::class,
+        'GlobalHelper' => App\Helpers\GlobalHelper::class,
     ])->toArray(),
 
 ];

@@ -14,8 +14,8 @@
     </x-slot>
 
     <div class="col-12 col-md-6">
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Edit a User Form</h3>
             </div>
             <div class="card-body">
@@ -25,6 +25,9 @@
                     <div class="row g-4">
                         <div class="col-12">
                             <x-input value="{{ $user->name }}" type="text" name="name" id="name" label="Name" placeholder="Full Name" />
+                        </div>
+                        <div class="col-12">
+                            <x-input value="{{ $user->name }}" type="text" name="nis" id="nis" label="NIS" placeholder="NIS" />
                         </div>
                         <div class="col-12">
                             <x-select name="class" id="class" label="Class">
@@ -41,8 +44,8 @@
                         </div>
                         <div class="col-12">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-between">
-                                <a href="{{ route('participant.user') }}" class="btn btn-outline-secondary">Cancel</a>
-                                <button class="btn btn-outline-primary">Submit</button>
+                                <a href="{{ route('participant.user') }}" class="btn btn-secondary">Cancel</a>
+                                <button class="btn btn-beige">Submit</button>
                             </div>
                         </div>
                     </div>

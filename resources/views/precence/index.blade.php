@@ -1,13 +1,13 @@
 <x-app>
     <x-slot name="header">
         <div class="col-sm-6">
-            <h3 class="mb-0">Precence</h3>
+            <h3 class="mb-0">Registration</h3>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-end">
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Precence
+                    Registration
                 </li>
             </ol>
         </div>
@@ -33,8 +33,8 @@
     </x-slot>
 
     <div class="col-12">
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Table Voting Session</h3>
             </div>
             <div class="card-body">
@@ -54,15 +54,14 @@
                                 <tr class="align-middle">
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ ucwords($votingSessionItem->name) }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($votingSessionItem->open)->format('d/m/Y h:i A') }} -
-                                        {{ \Carbon\Carbon::parse($votingSessionItem->close)->format('d/m/Y h:i A') }}</td>
+                                    <td>{{ Carbon::parse($votingSessionItem->open)->format('d F Y') }} (
+                                        {{ Carbon::parse($votingSessionItem->open)->format('h:i A') . ' - ' . Carbon::parse($votingSessionItem->close)->format('h:i A') }})
+                                    </td>
                                     <td>{{ $votingSessionItem->class->pluck('name')->implode(', ') }}</td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm ">
-                                            <a href="{{ route('votingSession.edit', ['votingSession' => $votingSessionItem->id]) }}" class="btn btn-primary">
-                                                <i class="fa-solid fa-list-check"></i>
-                                            </a>
-                                            <a href="{{ route('precence.scan', ['votingSession' => $votingSessionItem->id]) }}" class="btn btn-success" data-confirm-delete="true">
+                                            <a href="{{ route('registration.scan', ['votingSession' => $votingSessionItem->id]) }}" class="btn btn-success"
+                                                data-confirm-delete="true">
                                                 <i class="fa-solid fa-users-viewfinder"></i>
                                             </a>
                                         </div>

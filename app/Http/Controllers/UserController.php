@@ -26,7 +26,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function verify($class = null)
+    public function activation($class = null)
     {
         $usersQuery = User::whereDoesntHave('roles', function ($query) {
             $query->whereIn('name', ['Admin', 'TPS']);
@@ -68,6 +68,7 @@ class UserController extends Controller
 
         $user =  User::create([
             'name' => $validated['name'],
+            'nis' => $validated['nis'],
             'class_id' => $validated['class'],
             'status_id' => 2,
             'email' => $validated['email'],
@@ -106,6 +107,7 @@ class UserController extends Controller
 
         $dataToUpdate = [
             'name' => $validated['name'],
+            'nis' => $validated['nis'],
             'class_id' => $validated['class'],
             'email' => $validated['email'],
         ];
@@ -129,7 +131,7 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function activation(User $user)
+    public function verify(User $user)
     {
         if ($user->status_id != 1) {
             toast('Failed to reset user status, user status ' . $user->status->name . '.', 'error')->autoClose(5000);

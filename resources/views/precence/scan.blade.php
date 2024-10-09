@@ -1,12 +1,12 @@
 <x-app>
     <x-slot name="header">
         <div class="col-sm-6">
-            <h3 class="mb-0">Scan Precence - {{ $votingSession->name }}</h3>
+            <h3 class="mb-0">Scan Registration - {{ $votingSession->name }}</h3>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-end">
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('precence') }}">Precence</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('registration') }}">Registration</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
                     Scan
                 </li>
@@ -54,8 +54,8 @@
     </x-slot>
 
     <div class="col-12 col-md-6">
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Scan Precence</h3>
             </div>
             <div class="card-body">

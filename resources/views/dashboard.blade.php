@@ -1,13 +1,12 @@
 <x-app>
     <x-slot name="header">
         <div class="col-sm-6">
-            <h3 class="mb-0">Fixed Layout</h3>
+            <h3 class="mb-0">Dashboard</h3>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-end">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Fixed Layout
+                    Dashboard
                 </li>
             </ol>
         </div>
@@ -193,8 +192,8 @@
         </div>
     </div>
     <div class="col-12 col-md-6">
-        <div class="card card-primary h-100">
-            <div class="card-header">
+        <div class="card h-100">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Real Count Graphic</h3>
             </div>
             <div class="card-body">
@@ -203,8 +202,8 @@
         </div>
     </div>
     <div class="col-12 col-md-6">
-        <div class="card card-primary h-100">
-            <div class="card-header">
+        <div class="card h-100">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Voter Report</h3>
             </div>
             <div class="card-body">

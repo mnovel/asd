@@ -41,8 +41,8 @@
     </x-slot>
 
     <div class="col-12">
-        <div class="card card-primary">
-            <div class="card-header text-center">
+        <div class="card">
+            <div class="card-header text-center bg-beige">
                 <h4 class="fw-bolder">DAFTAR CALON KANDIDAT KETUA OSIS</h4>
                 <h4 class="fw-bolder">SMA NEGERI 1 PASURUAN</h4>
             </div>
@@ -50,18 +50,21 @@
                 <div class="row">
                     @foreach ($candidate as $candidateItem)
                         <div class="col">
-                            <div class="card card-primary">
-                                <div class="card-header text-center">
+                            <div class="card h-100">
+                                <div class="card-header text-center bg-brown">
                                     <h5 class="fw-bolder">{{ strtoupper($candidateItem->name) }}</h5>
                                 </div>
                                 <div class="card-body">
                                     <img src="{{ asset($candidateItem->photo) }}" alt="{{ $candidateItem->name }}" class="responsive rounded mx-auto d-block" width="600"
                                         height="400">
-                                    <div class="d-grid gap-2 mt-3">
-                                        <a href="{{ route('create.voting', ['candidate' => $candidateItem->uuid, 'user' => $user->uuid]) }}" class="btn btn-lg btn-primary"
-                                            type="button">(Klik/Pilih) -
-                                            CALON
-                                            NO {{ $candidateItem->order }}</a>
+                                </div>
+                                <div class="card-footer bg-transparent">
+                                    <div class="d-grid gap-2">
+                                        <a href="{{ route('create.voting', ['candidate' => $candidateItem->uuid, 'user' => $user->uuid]) }}" class="btn btn-lg btn-beige"
+                                            type="button">
+                                            (Klik/Pilih)
+                                            - CALON NO {{ $candidateItem->order }}
+                                        </a>
                                     </div>
                                 </div>
                             </div>

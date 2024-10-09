@@ -1,20 +1,19 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ GlobalHelper::setting('name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="AdminLTE 4 | Login Page">
-    <meta name="author" content="ColorlibHQ">
-    <meta name="description" content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
-    <meta name="keywords"
-        content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard">
-
+    <meta name="title" content="{{ GlobalHelper::setting('name') }}">
+    <meta name="author" content="{{ GlobalHelper::setting('author') }}">
+    <meta name="description" content="{{ GlobalHelper::setting('description') }}">
+    <meta name="keywords" content="{{ GlobalHelper::setting('keywords') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/styles/overlayscrollbars.min.css"
         integrity="sha256-dSokZseQNT08wYEWiz5iLI8QPlKxG+TswNRD8k35cpg=" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI="
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta2/dist/css/adminlte.min.css" integrity="sha256-gm2jB4Crdw1zuiybGdH7svr9LMyenyQV+rCwJHTNS5w="
@@ -24,12 +23,12 @@
 <body class="login-page bg-body-secondary">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/') }}"><b>{{ config('app.name', 'Laravel') }}</b></a>
+            <a href="{{ url('/') }}"><b>{{ config('app.name', 'Laravel') }}</b><br>SMA Negeri 1 Pasuruan</a>
         </div>
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-                <form action="{{ route('auth.signIn') }}" method="post">
+                <form action="{{ route('auth.signIn') }}" method="POST">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="email" class="form-control @error('email')is-invalid  @enderror" placeholder="Email" name="email" id="email"
@@ -58,7 +57,7 @@
                         </div>
                     </div>
                 </form>
-                <p class="mb-1 mt-3 text-center"> <a href="forgot-password.html">I forgot my password</a> </p>
+                <p class="mb-1 mt-3 text-center"> <a href="{{ route('resetPassword') }}">I forgot my password</a> </p>
                 <p class="mb-0 text-center"> <a href="{{ route('register') }}" class="text-center">
                         Register a new membership
                     </a> </p>

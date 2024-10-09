@@ -3,7 +3,7 @@
 @php
 
     $routeName = explode('.', Request::route()->getName());
-    $active = str_contains(str_replace('-', ' ', $routeName[0]), $alias);
+    $active = !strcmp(str_replace('-', ' ', $routeName[0]), $alias);
     $open = $active && !$slot->isEmpty() ? 'menu-open' : '';
     $classes = $active ? 'active' : '';
 

@@ -51,7 +51,7 @@
             })
 
             $('#class').change(function(e) {
-                var url = "{{ route('participant.verify', ['class' => ':class']) }}"
+                var url = "{{ route('participant.activation', ['class' => ':class']) }}"
                 url = url.replace(':class', $(this).val())
                 window.location = url;
             });
@@ -59,8 +59,8 @@
     </x-slot>
 
     <div class="col-12 col-md-4">
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Filter Class</h3>
             </div>
             <div class="card-body">
@@ -81,8 +81,8 @@
         </div>
     </div>
     <div class="col-12 col-md-8">
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Table User</h3>
             </div>
             <div class="card-body">
@@ -109,7 +109,7 @@
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm ">
                                             @if ($userItem->status_id == 1)
-                                                <a href="{{ route('participant.verify.activation', ['user' => $userItem->uuid]) }}" class="btn btn-success">
+                                                <a href="{{ route('participant.activation.verify', ['user' => $userItem->uuid]) }}" class="btn btn-success">
                                                     <i class="fa-solid fa-check-to-slot"></i>
                                                 </a>
                                             @endif

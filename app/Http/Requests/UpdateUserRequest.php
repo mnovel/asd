@@ -23,6 +23,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:30',
+            'nis' => 'required|numeric|digits:5|unique:users,nis',
             'class' => 'required|exists:classes,id',
             'email' => 'required|email|unique:users,email,' . $this->user->uuid . ',uuid',
             'password' => 'nullable|string|min:8',

@@ -34,8 +34,8 @@
     </x-slot>
 
     <div class="col-12 col-md-4">
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Create a TPS Form</h3>
             </div>
             <div class="card-body">
@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-12">
                             <div class="d-grid gap-2">
-                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-beige" type="submit">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -62,8 +62,8 @@
         </div>
     </div>
     <div class="col-12 col-md-8">
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header bg-brown">
                 <h3 class="card-title">Table TPS</h3>
             </div>
             <div class="card-body">

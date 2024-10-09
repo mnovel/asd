@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\GlobalHelper;
 use App\Models\VotingSession;
 use App\Http\Requests\StoreVotingSessionRequest;
 use App\Http\Requests\UpdateVotingSessionRequest;
@@ -37,8 +38,8 @@ class VotingSessionController extends Controller
         $validated = $request->validated();
         $votingSession = VotingSession::create([
             'name' => $validated['name'],
-            'open' => $this->extractOpenTime($validated['time']),
-            'close' => $this->extractCloseTime($validated['time']),
+            'open' => GlobalHelper::extractOpenTime($validated['time']),
+            'close' => GlobalHelper::extractCloseTime($validated['time']),
         ]);
         toast('Successfully created a voting session.', 'success')->autoClose(5000);
         return redirect()->back();

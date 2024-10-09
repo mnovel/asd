@@ -1,16 +1,18 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ GlobalHelper::setting('name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="AdminLTE 4 | Register Page">
-    <meta name="author" content="ColorlibHQ">
-    <meta name="description" content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
-    <meta name="keywords"
-        content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard">
+    <meta name="title" content="{{ GlobalHelper::setting('name') }}">
+    <meta name="author" content="{{ GlobalHelper::setting('author') }}">
+    <meta name="description" content="{{ GlobalHelper::setting('description') }}">
+    <meta name="keywords" content="{{ GlobalHelper::setting('keywords') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
-        crossorigin="anonymous" <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/styles/overlayscrollbars.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/styles/overlayscrollbars.min.css"
         integrity="sha256-dSokZseQNT08wYEWiz5iLI8QPlKxG+TswNRD8k35cpg=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI="
         crossorigin="anonymous">
@@ -20,19 +22,28 @@
 
 <body class="register-page bg-body-secondary">
     <div class="register-box">
-        <div class="register-logo"> <a href="../index2.html"><b>{{ config('app.name', 'Laravel') }}</b></a> </div>
+        <div class="register-logo"> <a href="../index2.html"><b>{{ config('app.name', 'Laravel') }}</b><br>SMA Negeri 1 Pasuruan</a></div>
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="register-box-msg">Register a new membership</p>
-                <form action="{{ route('auth.signUp') }}" method="post">
+                <form action="{{ route('auth.signUp') }}" method="POST">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="text" class="form-control @error('name')is-invalid  @enderror" placeholder="Full Name" name="name" id="name"
                             value="{{ old('name') }}">
                         <div class="input-group-text">
-                            <span class="bi bi-person-bounding-box"></span>
+                            <span class="fa-solid fa-user"></span>
                         </div>
                         @error('name')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control @error('nis')is-invalid  @enderror" placeholder="NIS" name="nis" id="nis" value="{{ old('nis') }}">
+                        <div class="input-group-text">
+                            <span class="fa-solid fa-id-card"></span>
+                        </div>
+                        @error('nis')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
@@ -43,7 +54,7 @@
                             @endforeach
                         </select>
                         <div class="input-group-text">
-                            <span class="bi bi-building-fill"></span>
+                            <span class="fa-solid fa-landmark"></span>
                         </div>
                         @error('class')
                             <span class="invalid-feedback">{{ $message }}</span>
@@ -53,7 +64,7 @@
                         <input type="email" class="form-control @error('email')is-invalid  @enderror" placeholder="Email" name="email" id="email"
                             value="{{ old('email') }}">
                         <div class="input-group-text">
-                            <span class="bi bi-person-fill"></span>
+                            <span class="fa-solid fa-envelope"></span>
                         </div>
                         @error('email')
                             <span class="invalid-feedback">{{ $message }}</span>
@@ -62,7 +73,7 @@
                     <div class="input-group mb-3">
                         <input type="password" class="form-control @error('password')is-invalid  @enderror" placeholder="Password" name="password" id="password">
                         <div class="input-group-text">
-                            <span class="bi bi-lock-fill"></span>
+                            <span class="fa-solid fa-lock"></span>
                         </div>
                         @error('password')
                             <span class="invalid-feedback">{{ $message }}</span>
@@ -92,6 +103,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta2/dist/js/adminlte.min.js" integrity="sha256-x5Mj2wYeSa9WVOK+EK8Z5rmXHFZ+MOY8r4eW8AKzpXU=" crossorigin="anonymous">
     </script>
+    <script src="https://kit.fontawesome.com/c1c9003162.js" crossorigin="anonymous"></script>
 
     @include('sweetalert::alert')
 
