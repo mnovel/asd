@@ -34,6 +34,11 @@
                                     <td>{{ ucwords($user->name) }}</td>
                                 </tr>
                                 <tr>
+                                    <th class="col-3">NIS</th>
+                                    <td class="col-1">:</td>
+                                    <td>{{ ucwords($user->nis) }}</td>
+                                </tr>
+                                <tr>
                                     <th class="col-3">Email</th>
                                     <td class="col-1">:</td>
                                     <td>{{ ucwords($user->email) }}</td>

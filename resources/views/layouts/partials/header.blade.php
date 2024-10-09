@@ -5,9 +5,11 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-bs-toggle="dropdown" href="#">Contact</a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-start">
-                <a href="https://wa.me/6285650803289" target="_blak" class="dropdown-item">Vincent</a>
+                <a href="https://wa.me/6285650803289" target="_blak" class="dropdown-item">Vincent (XI-7)</a>
                 <div class="dropdown-divider"></div>
-                <a href="https://wa.me/6282232585495" target="_blak" class="dropdown-item">Fauziyah</a>
+                <a href="https://wa.me/6282232585495" target="_blak" class="dropdown-item">Fauziyah (X-4)</a>
+                <div class="dropdown-divider"></div>
+                <a href="https://wa.me/6282338358269 " target="_blak" class="dropdown-item">Afriza (X-5)</a>
             </div>
         </li>
         @role('Admin')
