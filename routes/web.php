@@ -119,4 +119,16 @@ Route::middleware(['auth:web'])->group(function () {
         toast('Successfully reset database', 'success')->autoClose(5000);
         return redirect()->route('login');
     })->name('resetDatabase');
+
+    Route::get('clear-cache', function () {
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+        Artisan::call('clear-compiled');
+        Artisan::call('optimize');
+
+        toast('Successfully cleared cache', 'success')->autoClose(5000);
+        return redirect('/');
+    })->name('clearCache');
 });
