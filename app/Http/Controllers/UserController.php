@@ -134,7 +134,7 @@ class UserController extends Controller
     public function verify(User $user)
     {
         if ($user->status_id != 1) {
-            toast('Failed to reset user status, user status ' . $user->status->name . '.', 'error')->autoClose(5000);
+            toast('Failed to activate user, user status ' . $user->status->name . '.', 'error')->autoClose(5000);
             return redirect()->back();
         }
 
@@ -153,11 +153,11 @@ class UserController extends Controller
         }
 
         $user->precence()->delete();
+
         if ($user->status_id == 4) {
             $user->voting()->delete();
         }
 
-        // Reset status user
         $user->status_id = 2;
         $user->save();
 
