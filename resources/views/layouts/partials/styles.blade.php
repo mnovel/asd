@@ -8,6 +8,17 @@
     crossorigin="anonymous">
 
 <style>
+    .link-brown {
+        color: #7A5546;
+    }
+
+    .link-brown:hover,
+    .link-brown:focus {
+        color: #C5B2A2;
+        text-decoration: underline;
+    }
+
+
     .btn-beige {
         background-color: #7A5546;
         border-color: #7A5546;
@@ -25,7 +36,6 @@
 
     .bg-dark-blue {
         background-color: #1C2C3D;
-        color: white;
     }
 
     .bg-beige {

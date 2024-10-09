@@ -24,15 +24,16 @@
                 <img src="{{ asset('storage/template/dist/assets/img/user.png') }}" class="user-image rounded-circle shadow" alt="User Image">
                 <span class="d-none d-md-inline">{{ ucwords(Auth::user()->name) }}</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <li class="user-header text-bg-primary"> <img src="{{ asset('storage/template/dist/assets/img/user.png') }}" class="rounded-circle shadow" alt="User Image">
+            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end rounded-bottom-3">
+                <li class="user-header bg-primary-subtle text-white" data-bs-theme="dark"> <img src="{{ asset('storage/template/dist/assets/img/user.png') }}"
+                        class="rounded-circle shadow" alt="User Image">
                     <p>
                         {{ ucwords(Auth::user()->name) }}
                         <small>{{ Auth::user()->email }}</small>
                     </p>
                 </li>
                 <li class="user-footer">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <a href="{{ route('profile') }}" class="btn btn-default btn-flat">Profile</a>
                     <a href="{{ route('auth.signOut') }}" class="btn btn-default btn-flat float-end">Sign out</a>
                 </li>
             </ul>

@@ -53,7 +53,8 @@ Route::middleware(['auth:web'])->group(function () {
         Route::put('tps/{user}', [TpsController::class, 'update'])->middleware(['permission:TPS'])->name('.tps');
         Route::put('candidate/{candidate}', [CandidateController::class, 'update'])->middleware(['permission:Candidate'])->name('.candidate');
         Route::put('voting-session/{votingSession}', [VotingSessionController::class, 'update'])->middleware(['permission:Voting Session'])->name('.votingSession');
-        Route::put('setting/{setting}', [DashboardController::class, 'settingEdit'])->middleware(['permission:Setting'])->name('.setting');
+        Route::put('setting', [DashboardController::class, 'settingEdit'])->middleware(['permission:Setting'])->name('.setting');
+        Route::put('profile', [DashboardController::class, 'profileEdit'])->name('.profile');
     });
 
     Route::prefix('delete')->name('delete')->group(function () {

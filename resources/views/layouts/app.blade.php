@@ -3,9 +3,9 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>{{ GlobalHelper::setting('name') }}</title>
+    <title>{{ GlobalHelper::setting('app_name') . ' | ' . GlobalHelper::setting('instansi') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="{{ GlobalHelper::setting('name') }}">
+    <meta name="title" content="{{ GlobalHelper::setting('app_name') . ' | ' . GlobalHelper::setting('instansi') }}">
     <meta name="author" content="{{ GlobalHelper::setting('author') }}">
     <meta name="description" content="{{ GlobalHelper::setting('description') }}">
     <meta name="keywords" content="{{ GlobalHelper::setting('keywords') }}">
@@ -13,7 +13,7 @@
     @include('layouts.partials.styles')
 </head>
 
-<body class="layout-fixed sidebar-expand-lg sidebar-mini sidebar-collapse  bg-body-tertiary">
+<body class="layout-fixed sidebar-expand-lg sidebar-mini sidebar-collapse">
     <div class="app-wrapper">
         <nav class="app-header navbar navbar-expand bg-body">
             @include('layouts.partials.header')

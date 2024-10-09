@@ -38,7 +38,7 @@
     <div class="col-12 col-md-6">
         <div class="card">
             <div class="card-header bg-brown">
-                <h3 class="card-title">Setting Form</h3>
+                <h3 class="card-title">Edit Setting Form</h3>
             </div>
             <div class="card-body">
                 <form action="{{ route('edit.setting', ['setting' => $setting->id]) }}" method="POST">
@@ -46,10 +46,10 @@
                     @method('PUT')
                     <div class="row g-4">
                         <div class="col-12">
-                            <x-input :value="$setting->name" type="text" name="name" id="name" label="App Name" placeholder="App Name" />
+                            <x-input :value="$setting->name" type="text" name="app_name" id="app_name" label="App Name" placeholder="App Name" />
                         </div>
                         <div class="col-12">
-                            <x-input :value="$setting->sort_name" type="text" name="sort_name" id="sort_name" label="Sort App Name" placeholder="Sort App Name" />
+                            <x-input :value="$setting->sort_name" type="text" name="instansi" id="instansi" label="Instansi" placeholder="Instansi" />
                         </div>
                         <div class="col-12">
                             <x-input :value="$setting->author" type="text" name="author" id="author" label="Author" placeholder="Author" />

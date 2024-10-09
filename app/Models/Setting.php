@@ -10,8 +10,8 @@ class Setting extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'sort_name',
+        'app_name',
+        'instansi',
         'author',
         'description',
         'keywords',

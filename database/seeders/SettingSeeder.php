@@ -14,8 +14,8 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         Setting::create([
-            'name' => 'E-Pilketos SMA NEGERI 1 PASURUAN',
-            'sort_name' => 'E-Pilketos',
+            'app_name' => 'E-Pilketos',
+            'instansi' => 'SMA NEGERI 1 PASURUAN',
             'author' => 'MPK SEWAGATI SMA NEGERI 1 PASURUAN',
             'description' => 'Website pemilihan ketua osis SMA Negeri 1 Pasuruan.',
             'keywords' => 'Pemilu, Pilketos, Pemilihan, OSIS, SMA Negeri 1 Pasuruan, Ketua OSIS, Pemungutan Suara, Siswa, Partisipasi, Pendidikan, Demokrasi, Kegiatan Siswa, Pengembangan Karakter, Pemimpin Muda, Inovasi Siswa',

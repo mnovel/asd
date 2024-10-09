@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('sort_name');
+            $table->string('app_name');
+            $table->string('instansi');
             $table->string('author');
             $table->text('description');
             $table->text('keywords');

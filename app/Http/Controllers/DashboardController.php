@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\GlobalHelper;
-use App\Http\Requests\UpdateSettingRequest;
 use App\Models\Candidate;
 use App\Models\Classes;
 use App\Models\Setting;
 use App\Models\User;
 use App\Models\Voting;
 use App\Models\VotingSession;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\UpdateSettingRequest;
 
 class DashboardController extends Controller
 {
@@ -32,8 +32,8 @@ class DashboardController extends Controller
 
     public function profile()
     {
-        $setting = Setting::first();
-        return view('setting', compact('setting'));
+        $user = User::where('uuid', Auth::user()->uuid)->first();
+        return view('Profile', compact('user'));
     }
 
     public function setting()
@@ -42,13 +42,34 @@ class DashboardController extends Controller
         return view('setting', compact('setting'));
     }
 
-    public function settingEdit(UpdateSettingRequest $request, Setting $setting)
+    public function profileEdit(UpdateProfileRequest $request)
+    {
+
+
+        $validated = $request->validated();
+        $user = User::find(Auth::user()->uuid);
+
+        $dataToUpdate = [
+            'name' => $validated['name'],
+        ];
+
+        if (!empty($validated['password'])) {
+            $dataToUpdate['password'] = $validated['password'];
+        }
+
+        $user->update($dataToUpdate);
+        toast('Successfully edited profile.', 'success')->autoClose(5000);
+        return redirect()->back();
+    }
+
+    public function settingEdit(UpdateSettingRequest $request)
     {
         $validated = $request->validated();
+        $setting = Setting::first();
 
         $setting->update([
-            'name' => $validated['name'],
-            'sort_name' => $validated['sort_name'],
+            'app_name' => $validated['app_name'],
+            'instansi' => $validated['instansi'],
             'author' => $validated['author'],
             'open' => GlobalHelper::extractOpenTime($validated['time']),
             'close' => GlobalHelper::extractCloseTime($validated['time']),
