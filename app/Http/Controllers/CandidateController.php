@@ -34,7 +34,7 @@ class CandidateController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('photo')) {
-            $fotoPath = $request->file('photo')->store('kandidat', 'public');
+            $fotoPath = $request->file('photo')->store('assets/img/kandidat', 'public');
             $validated['photo'] = 'storage/' . $fotoPath;
         }
 
@@ -80,7 +80,7 @@ class CandidateController extends Controller
                 unlink(public_path($candidate->photo));
             }
 
-            $photoPath = $request->file('photo')->store('kandidat', 'public');
+            $photoPath = $request->file('photo')->store('assets/img/kandidat', 'public');
             $validated['photo'] = 'storage/' . $photoPath;
         }
 

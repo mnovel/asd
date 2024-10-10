@@ -1,9 +1,9 @@
-<x-sidebar :href="route('dashboard')" :logo="asset('storage/template/dist/assets/img/logo.png')">
+<x-sidebar :href="route('dashboard')" :logo="asset('storage/assets/img/logo.png')">
     @can('Dashboard')
         <x-sidebar-item name="Dashboard" alias="dashboard" :link="route('dashboard')" icon="fa-solid fa-house-chimney"></x-sidebar-item>
     @endcan
     @role('Participant')
-        <x-sidebar-item name="Candidate" alias="listCandidate" :link="route('candidate.show')" icon="fa-solid fa-house-chimney"></x-sidebar-item>
+        <x-sidebar-item name="Candidate" alias="listCandidate" :link="route('listCandidate')" icon="fa-solid fa-user-tie"></x-sidebar-item>
     @endrole
     @can('Setting')
         <x-sidebar-item name="Setting" alias="setting" :link="route('setting')" icon="fa-solid fa-gear"></x-sidebar-item>

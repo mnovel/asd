@@ -6,59 +6,6 @@
     crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta2/dist/css/adminlte.min.css" integrity="sha256-gm2jB4Crdw1zuiybGdH7svr9LMyenyQV+rCwJHTNS5w="
     crossorigin="anonymous">
-
-<style>
-    .link-brown {
-        color: #7A5546;
-    }
-
-    .link-brown:hover,
-    .link-brown:focus {
-        color: #C5B2A2;
-        text-decoration: underline;
-    }
-
-
-    .btn-beige {
-        background-color: #7A5546;
-        border-color: #7A5546;
-        color: white;
-        font-size: 16px;
-        border-radius: 4px;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    .btn-beige:hover {
-        background-color: #C5B2A2;
-        border-color: #C5B2A2;
-        color: #1C2C3D;
-    }
-
-    .bg-dark-blue {
-        background-color: #1C2C3D;
-    }
-
-    .bg-beige {
-        background-color: #C5B2A2;
-        color: white;
-    }
-
-    .bg-brown {
-        background-color: #7A5546;
-        color: white;
-    }
-
-    .bg-light-yellow {
-        background-color: #EDD89B;
-    }
-
-    .bg-olive {
-        background-color: #6A5B20;
-    }
-
-    .bg-gray {
-        background-color: #5A544B;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset('storage/assets/css/style.css') }}">
 
 {{ $style ?? '' }}

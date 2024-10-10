@@ -14,14 +14,24 @@
         </div>
     </x-slot>
 
+    <x-slot name="style">
+        <style>
+            .responsive {
+                width: 100%;
+                max-width: 200px;
+                height: auto;
+            }
+        </style>
+    </x-slot>
+
     <div class="col-12">
         <div class="card">
-            <div class="card-header text-center bg-beige">
+            <div class="card-header text-center bg-olive">
                 <h4 class="fw-bolder">DAFTAR CALON KANDIDAT KETUA OSIS</h4>
                 <h4 class="fw-bolder">{{ strtoupper(GlobalHelper::setting('instansi')) }}</h4>
             </div>
             <div class="card-body">
-                <div class="row">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
                     @foreach ($candidate as $candidateItem)
                         <div class="col">
                             <div class="card h-100">
@@ -29,13 +39,12 @@
                                     <h5 class="fw-bolder">{{ strtoupper($candidateItem->name) }}</h5>
                                 </div>
                                 <div class="card-body">
-                                    <img src="{{ asset($candidateItem->photo) }}" alt="{{ $candidateItem->name }}" class="responsive rounded mx-auto d-block" width="600"
-                                        height="400">
+                                    <img src="{{ asset($candidateItem->photo) }}" alt="{{ $candidateItem->name }}" class="responsive mx-auto d-block">
                                 </div>
-                                <div class="card-footer bg-transparent">
-                                    <div class="d-grid gap-2">
-                                        <a href="{{ route('create.voting', ['candidate' => $candidateItem->uuid, 'user' => $user->uuid]) }}" class="btn btn-lg btn-beige fw-bolder"
-                                            type="button">
+                                <div class="card-footer bg-brown">
+                                    <div class="d-grid gap-2 col-6 mx-auto">
+                                        <a href="{{ route('create.voting', ['candidate' => $candidateItem->uuid, 'user' => $user->uuid]) }}"
+                                            class="btn btn-lg btn-light-yellow fw-bolder" type="button">
                                             (Klik/Pilih)
                                             - CALON NO {{ $candidateItem->order }}
                                         </a>

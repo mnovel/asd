@@ -119,7 +119,7 @@
                             @foreach ($candidate as $candidateItem)
                                 <tr>
                                     <td class="text-center">{{ $candidateItem->order }}</td>
-                                    <td><img src="{{ url($candidateItem->photo) }}" alt="{{ $candidateItem->name }}" class="responsive" width="600" height="400"></td>
+                                    <td><img src="{{ url($candidateItem->photo) }}" alt="{{ $candidateItem->name }}" class="responsive mx-auto d-block"></td>
                                     <td>{{ $candidateItem->name }}</td>
                                     <td>{!! $candidateItem->visi !!}</td>
                                     <td>{!! $candidateItem->misi !!}</td>

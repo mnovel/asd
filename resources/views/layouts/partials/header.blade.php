@@ -9,7 +9,7 @@
                 <div class="dropdown-divider"></div>
                 <a href="https://wa.me/6282232585495" target="_blak" class="dropdown-item">Fauziyah (X-4)</a>
                 <div class="dropdown-divider"></div>
-                <a href="https://wa.me/6282338358269 " target="_blak" class="dropdown-item">Afriza (X-5)</a>
+                <a href="https://wa.me/6282338358269" target="_blak" class="dropdown-item">Afriza (X-5)</a>
             </div>
         </li>
         @role('Admin')
@@ -26,12 +26,12 @@
         </li>
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img src="{{ asset('storage/template/dist/assets/img/user.png') }}" class="user-image rounded-circle shadow" alt="User Image">
+                <img src="{{ asset('storage/assets/img/user.png') }}" class="user-image rounded-circle shadow" alt="User Image">
                 <span class="d-none d-md-inline">{{ ucwords(Auth::user()->name) }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end rounded-bottom-3">
-                <li class="user-header bg-primary-subtle text-white" data-bs-theme="dark"> <img src="{{ asset('storage/template/dist/assets/img/user.png') }}"
-                        class="rounded-circle shadow" alt="User Image">
+                <li class="user-header bg-primary-subtle text-white" data-bs-theme="dark"> <img src="{{ asset('storage/assets/img/user.png') }}" class="rounded-circle shadow"
+                        alt="User Image">
                     <p>
                         {{ ucwords(Auth::user()->name) }}
                         <small>{{ Auth::user()->email }}</small>

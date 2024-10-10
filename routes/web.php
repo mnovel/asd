@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VotingController;
 use App\Http\Controllers\VotingSessionController;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -117,8 +118,15 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('list-candidate', [CandidateController::class, 'show'])->middleware('role:Participant')->name('listCandidate');
 
     Route::get('reset-database', function () {
-        Artisan::call('migrate:reset');
-        Artisan::call('migrate --seed');
+        Artisan::call('migrate:reset', ['--force' => true]);
+        Artisan::call('migrate', ['--seed' => true, '--force' => true]);
+
+        $directory = storage_path('app/public/assets/img/kandidat');
+
+        if (File::exists($directory)) {
+            File::deleteDirectory($directory);
+        }
+
         toast('Successfully reset database', 'success')->autoClose(5000);
         return redirect()->route('login');
     })->name('resetDatabase');
@@ -129,7 +137,6 @@ Route::middleware(['auth:web'])->group(function () {
         Artisan::call('config:clear');
         Artisan::call('view:clear');
         Artisan::call('clear-compiled');
-        Artisan::call('optimize');
 
         toast('Successfully cleared cache', 'success')->autoClose(5000);
         return redirect()->back();

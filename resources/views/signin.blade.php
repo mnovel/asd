@@ -16,7 +16,7 @@
 <body class="login-page bg-dark-blue">
     <div class="login-box">
         <div class="login-logo">
-            <img src="{{ asset('storage/template/dist/assets/img/logo.png') }}" alt="" class="img-fluid" width="40%"><br>
+            <img src="{{ asset('storage/assets/img/logo.png') }}" alt="" class="img-fluid" width="40%"><br>
             <a href="{{ route('login') }}" class="text-white"><b>{{ GlobalHelper::setting('app_name') }}</b><br>{{ GlobalHelper::setting('instansi') }}</a>
         </div>
         <div class="card">
