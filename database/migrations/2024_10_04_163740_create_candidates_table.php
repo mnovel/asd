@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('visi');
             $table->text('misi');
+            $table->text('program');
             $table->string('photo');
             $table->integer('order');
             $table->timestamps();

@@ -25,6 +25,7 @@ class StoreCandidateRequest extends FormRequest
             'name' => 'required|string|max:30',
             'visi' => 'required|string',
             'misi' => 'required|string',
+            'program' => 'required|string',
             'photo' => 'required|file|mimes:jpg,jpeg,png,gif|max:3072',
             'order' => 'required|numeric|unique:candidates,order'
         ];

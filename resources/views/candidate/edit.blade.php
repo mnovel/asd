@@ -37,6 +37,7 @@
 
                 initializeSummernote('#visi');
                 initializeSummernote('#misi');
+                initializeSummernote('#program');
             });
         </script>
     </x-slot>
@@ -62,6 +63,9 @@
                         </div>
                         <div class="col-12">
                             <x-textarea value="{!! $candidate->misi !!}" name="misi" id="misi" label="Misi" />
+                        </div>
+                        <div class="col-12">
+                            <x-textarea value="{!! $candidate->program !!}" name="program" id="program" label="Program" />
                         </div>
                         <div class="col-12">
                             <x-input type="file" name="photo" id="photo" label="Photo" />

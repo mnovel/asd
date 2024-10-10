@@ -47,6 +47,7 @@
 
                 initializeSummernote('#visi');
                 initializeSummernote('#misi');
+                initializeSummernote('#program');
 
                 $('#table').DataTable({
                     columnDefs: [{
@@ -80,6 +81,9 @@
                             <x-textarea name="misi" id="misi" label="Misi" />
                         </div>
                         <div class="col-12">
+                            <x-textarea name="program" id="program" label="Program" />
+                        </div>
+                        <div class="col-12">
                             <x-input type="file" name="photo" id="photo" label="Photo" />
                         </div>
                         <div class="col-12">
@@ -107,6 +111,7 @@
                                 <th>Name</th>
                                 <th>Visi</th>
                                 <th>Misi</th>
+                                <th>Program</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -118,6 +123,7 @@
                                     <td>{{ $candidateItem->name }}</td>
                                     <td>{!! $candidateItem->visi !!}</td>
                                     <td>{!! $candidateItem->misi !!}</td>
+                                    <td>{!! $candidateItem->program !!}</td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm ">
                                             <a href="{{ route('candidate.edit', ['candidate' => $candidateItem->uuid]) }}" class="btn btn-warning">

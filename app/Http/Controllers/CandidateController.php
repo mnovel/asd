@@ -42,6 +42,7 @@ class CandidateController extends Controller
             'name' => $validated['name'],
             'visi' => $validated['visi'],
             'misi' => $validated['misi'],
+            'program' => $validated['program'],
             'photo' => $validated['photo'],
             'order' => $validated['order'],
         ]);
@@ -87,6 +88,7 @@ class CandidateController extends Controller
             'name' => $validated['name'],
             'visi' => $validated['visi'],
             'misi' => $validated['misi'],
+            'program' => $validated['program'],
             'photo' => $validated['photo'] ?? $candidate->photo,
             'order' => $validated['order'],
         ]);

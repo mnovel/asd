@@ -58,6 +58,19 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#program-{{ $index + 1 }}" aria-expanded="false" aria-controls="program-{{ $index + 1 }}">
+                                                        Program Unggulan
+                                                    </button>
+                                                </h2>
+                                                <div id="program-{{ $index + 1 }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        {!! $candidateItem->program !!}
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -21,6 +21,7 @@ class Candidate extends Model
         'name',
         'visi',
         'misi',
+        'program',
         'photo',
         'order'
     ];
